@@ -1,0 +1,11 @@
+-Page_accueil [Page_anonyme, Page_admin, Page_utilisateur, Page_Creation_Compte] : permet de se connecter en tant qu’administrateur, utilisateur ou anonyme ou bien de créer son compte.
+-Page_Creation_Compte [Page_accueil] : permet de créer son compte et de revenir sur la page d’accueil une fois cela fait ou d’y retourner directement avec un bouton retour.
+-Page_admin [Gestion_des_Comptes, Page_des_graphes] : tu as accès à la gestion des comptes ou au site de base.
+-Page_anonyme [Page_des_graphes] : tu peux regarder les graphes sur les villes etc…
+-Page_utilisateur [Page_proprietaire, Page_locataire, Page_des_graphes] : permet de gérer ses maisons/appartement ou de re garder les stats.
+-Page_proprietaire [Page_Gestion_Maison] : permet de voir les différentes maisons possédées.
+-Page_Locataire [Page_appartement1, Page_appartement2, etc…] : permet de voir les différents appartements possédés.
+-page_appartement
+-page_maison
+-page_piece
+-page_profil
