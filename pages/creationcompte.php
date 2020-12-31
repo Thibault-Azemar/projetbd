@@ -3,32 +3,38 @@
 		$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
 		if(isset($_POST['Boutton_Connex']))
 		{
-			echo "ok";
+			echo "ok1";
 			if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['date_de_naissance']) AND !empty($_POST['email']) AND !empty($_POST['numtel']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) /** AND ($genre != NULL) **/)
 			{
 				echo "good";
 			}
+			else
+			{
+				$erreur = "Veuillez remplir tous les champs";
+			}
+
 		}
 		else
 		{
 			echo "pas ok";
 		}
  ?>
-<!doctype html>
+ <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>BDD Projet</title>
+  <title>Projet BDD </title>
   <link rel="stylesheet" href="style.css">
 </head>
-	<body>
-		<div align="center">
-				<h1>Inscription</h1>
-			</br></br>
-			<from method="POST" action="">
-				<label for="formulaire">
+<body>
+	<font color="#000000">
+	<div class="Inscription" align="center">
+		<h1>Page Inscription </h1>
+		<form method="POST" action="">
+			<label for="formulaire">
 					<table align="center">
 						<tr >
+							<from method="POST" action="">
 							<td align="right">
 								<label for="nom">Nom :</label>
 							</td>
@@ -97,18 +103,25 @@
 								<input type="password" id="mdp2"name="mdp2" />
 							</td>
 						</tr>
+
 						<tr>
+							<td></td> 
+							<td>
+								</br></br>
+							<input type="submit" id="Boutton_Connex" name="Boutton_Connex" value="Connexion"/>
+							</td>
 						</tr>
 					</table>
-					<input type="submit" id="Boutton_Connex" name="Boutton_Connex" value="Confirmer"/>
 				</label>
-			</from>
-			<?php
-			if(isset($erreur))
-			{
-				echo '<font color="red">'.$erreur."</font>";
-			}
-			?>
+			</form>
 		</div>
-	</body>
+	<?php 
+		
+		if(isset($erreur))
+		{
+			echo '<font color="red">'.$erreur."</font>"; 
+		}
+ 	?>
+
+</body>
 </html>
