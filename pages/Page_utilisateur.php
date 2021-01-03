@@ -5,12 +5,12 @@ session_start();
 				if(isset($_GET['id']) AND $_GET['id'] > 0) 
 				{
    $getid = intval($_GET['id']);
-   $requser = $BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?");
-   $requser->execute(array($getid));
-   $userinfo = $requser->fetch();
-   $requser2 = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
-   $requser2->execute(array($getid));
-   $userinfo2 = $requser2->fetch();
+   $reqcompte = $BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?");
+   $reqcompte->execute(array($getid));
+   $compteinfo = $reqcompte->fetch();
+   $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
+   $reqpersonne->execute(array($getid));
+   $personneinfo = $reqpersonne->fetch();
 ?>
 <html>
    <head>
@@ -19,12 +19,12 @@ session_start();
    </head>
    <body>
       <div align="center">
-         <h2>Profil de <?php echo $userinfo2['nom']." ".$userinfo2['prenom']; ?></h2>
+         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']; ?></h2>
          <br /><br />
-         Mail = <?php echo $userinfo['email']; ?>
+         Mail = <?php echo $compteinfo['email']; ?>
          <br />
          <?php
-         if(isset($_SESSION['id']) AND $userinfo['Id_Compte'] == $_SESSION['id']) {
+         if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
          ?>
          <br />
          <a href="editionprofil.php">Editer mon profil</a>

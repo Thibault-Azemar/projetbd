@@ -7,11 +7,11 @@ session_start();
 
 			$Identifiant_Connex=htmlspecialchars($_POST['Identifiant_Connex']); 
 			$MotDePasse_Connex=$_POST['MotDePasse_Connex']; 
-
+			$Mdp_modif=sha1($MotDePasse_Connex);
 			if(!empty($Identifiant_Connex) AND !empty($MotDePasse_Connex))
 			{
 				$requser=$BDD->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
-				$requser->execute(array($Identifiant_Connex , $MotDePasse_Connex));
+				$requser->execute(array($Identifiant_Connex , $Mdp_modif));
 				$userexist=$requser->rowCount();  
 				if($userexist==1)
 				{
