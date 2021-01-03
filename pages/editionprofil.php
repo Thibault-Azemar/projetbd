@@ -23,7 +23,7 @@ if(isset($_SESSION['id'])) {
       header('Location: Page_utilisateur.php?id='.$_SESSION['id']);
    }
   if(isset($_POST['NMail']) AND !empty($_POST['NMail']) AND $_POST['NMail'] != $compteinfo['email']) {
-      $NMAIL = htmlspecialchars($_POST['Nmail']);
+      $NMAIL = htmlspecialchars($_POST['NMail']);
       $insertNMAIL = $BDD->prepare("UPDATE compte SET email = ? WHERE Id_Compte = ?");
       $insertNMAIL->execute(array($NMAIL, $_SESSION['id']));
       header('Location: Page_utilisateur.php?id='.$_SESSION['id']);
@@ -65,7 +65,7 @@ if(isset($_SESSION['id'])) {
                <input type="password" name="NMdp2" placeholder="Confirmation du mot de passe" /><br /><br />
                <input type="submit" value="Mettre à jour mon profil !" />
             </form>
-           <a href=><font color="#0000FF">Page utilisateur</a>
+           
             <?php if(isset($msg)) { echo $msg; } ?>
          </div>
       </div>
