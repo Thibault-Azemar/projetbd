@@ -28,12 +28,11 @@
 		                {
 	    					if($datenaissance < $dat18)
 	    					{
-								$requser=$bdd->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
-								$requser->execute(array($email , $mdp));
+								$requser=$bdd->prepare("SELECT * FROM compte WHERE email = ?"); 
+								$requser->execute(array($email));
 								$userexist=$requser->rowCount();  
 								if($userexist==0)
 								{
-									echo "c'est ok";
 									$datenaissance = $datenaissance->format('Y-m-d');
 									$today = $today->format('Y-m-d');
 									//création de la ligne personne
@@ -50,11 +49,10 @@
 									$insertintocompte->execute(array($today, $etat, $email, $mdp, $infopersonne['Id_Personne']));
 
 									$erreur = "Votre compte a bien été créé !";
-
 								}
 								else
 								{
-									$erreur="Compte déja existant"; 
+									$erreur="Email déja utilisé"; 
 								}
 							}
 							else
@@ -83,7 +81,7 @@
 			}
 
 		}
- ?>
+?>
  <!doctype html>
 <html lang="fr">
 <head>
@@ -179,6 +177,7 @@
 					</table>
 				</label>
 			</form>
+			<a href="../main.php"><font color="#0000FF">Acceuil</a>
 		</div>
 	<?php 
 		
