@@ -20,10 +20,8 @@ session_start();
    </head>
    <body>
       <div align="center">
-         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']; ?></h2>
+         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; </h2>
          <br /><br />
-         Mail = <?php echo $compteinfo['email']; ?>
-         <br />
          <?php 
 			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE Id_Personne  = ?");
    			$reqappart->execute(array($getid)); 
@@ -32,14 +30,28 @@ session_start();
    			{
    					while ($num_appart = $reqappart->fetch()){   
    					echo "Appartement n°".$num_appart['Id_Appartement']."<br/>"; 	
-
    						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
-   						$reqpiece->execute(array($num_appart['Id_Appartement']));   
-   						while($pieceinfo=$reqpiece->fetch()){
-   							echo $pieceinfo['libelle']."</br>"; 
+						$reqpiece->execute(array($num_appart['Id_Appartement']));   
+   						
 
+
+   						
+   						 
+   						while($pieceinfo=$reqpiece->fetch()){
+   							$reqtype_piece=$BDD->prepare("SELECT nom_type from type_piece LEFT JOIN piece ON type_piece.Id_Type_piece = piece.Id_Type_piece WHERE Id_Appartement = ? AND piece.Id_Piece= ? "); 
+   						$reqtype_piece->execute(array($num_appart['Id_Appartement'],$pieceinfo["Id_Piece"])); 
+   						$type_piece_info=$reqtype_piece->fetch(); 
+   							echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"."</br>"; 
+   						
+   						echo "Appareils : "."</br>"; 
+   						$reqappareil=$BDD->prepare("SELECT * FROM appareil WHERE Id_Piece  = ?"); 
+   						$reqappareil->execute(array($pieceinfo['Id_Piece'])); 
+   						while ($appareilinfo=$reqappareil->fetch()){
+   							echo $appareilinfo['description']; 
    						}
    					}
+   					}
+
    			}
    			?>
          <?php
