@@ -28,10 +28,21 @@
 							if($userexist==0)
 							{
 								echo "c'est ok";
-								$datenaissance = $datenaissance->format('d/m/Y');
-								$insertintopersonne = $bdd->prepare("INSERT INTO personne(date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?, ?)");
+								$datenaissance = $datenaissance->format('Y-m-d');
+								$today = $today->format('Y-m-d');
+								//création de la ligne personne
+								$insertintopersonne = $bdd->prepare("INSERT INTO personne(date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?)");
 								$insertintopersonne->execute(array($datenaissance, $nom, $genre, $numtel, $prenom));
+								//récupération de l'id personne
+								$requid=$bdd->prepare("SELECT id_personne FROM personne WHERE nom = ? AND num_tel = ?"); 
+								$idpersonne = $requser->execute(array($nom , $numtel));
+								//création de la ligne compte
+								$etat = 0;
+								$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, idpersonne) VALUES(?, ?, ?, ?, ?)");
+								$insertintocompte->execute(array($today, $etat, $email, $mdp, $idpersonne));
+
 								$erreur = "Votre compte a bien été créé !";
+
 							}
 							else
 							{
