@@ -1,6 +1,6 @@
 <?php
 session_start();  
-
+		
 		$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
 				if(isset($_GET['id']) AND $_GET['id'] > 0) 
 				{
@@ -11,6 +11,7 @@ session_start();
    $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
    $reqpersonne->execute(array($getid));
    $personneinfo = $reqpersonne->fetch();
+
 ?>
 <html>
    <head>
@@ -23,6 +24,24 @@ session_start();
          <br /><br />
          Mail = <?php echo $compteinfo['email']; ?>
          <br />
+         <?php 
+			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE Id_Personne  = ?");
+   			$reqappart->execute(array($getid)); 
+   			
+
+   			{
+   					while ($num_appart = $reqappart->fetch()){   
+   					echo "Appartement n°".$num_appart['Id_Appartement']."<br/>"; 	
+
+   						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
+   						$reqpiece->execute(array($num_appart['Id_Appartement']));   
+   						while($pieceinfo=$reqpiece->fetch()){
+   							echo $pieceinfo['libelle']."</br>"; 
+
+   						}
+   					}
+   			}
+   			?>
          <?php
          if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
          ?>
