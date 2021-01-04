@@ -41,13 +41,13 @@
 									$insertintopersonne->execute(array($datenaissance, $nom, $genre, $numtel, $prenom));
 
 									//récupération de l'id personne
-									$requid=$bdd->prepare("SELECT id_personne FROM personne WHERE nom = ? AND num_tel = ?"); 
-									$idpersonne = $requid->execute(array($nom , $numtel));
-
+									$requid=$bdd->prepare("SELECT * FROM personne WHERE nom = ? AND num_tel = ?"); 
+									$requid->execute(array($nom , $numtel));
+									$infopersonne=$requid->fetch(); 
 									//création de la ligne compte
 									$etat = 0;
 									$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, Id_Personne) VALUES(?, ?, ?, ?, ?)");
-									$insertintocompte->execute(array($today, $etat, $email, $mdp, $idpersonne));
+									$insertintocompte->execute(array($today, $etat, $email, $mdp, $infopersonne['Id_Personne']));
 
 									$erreur = "Votre compte a bien été créé !";
 

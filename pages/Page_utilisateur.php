@@ -58,8 +58,8 @@ session_start();
    					$reqressources->execute(array($infoconso['Id_Ressources'])); 
    							$ressourcesinfo=$reqressources->fetch(); 
    							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";  
-   				} 
-   				}
+   				} 	
+   				}?><tr><td></td> <?php 
 			}
    		}
    	}
