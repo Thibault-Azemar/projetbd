@@ -16,10 +16,21 @@
 				{
 					if ($mdp == $mdp2)
 					{
-						echo "c'est ok";
-						$insertintocompte = $bdd->prepare("INSERT INTO personne(email, date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?, ?)");
-						$insertintocompte->execute(array($email, $datenaissance, $nom, $genre, $numtel, $prenom));
-						$erreur = "Votre compte a bien été créé !";
+						$requser=$BDD->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
+						$requser->execute(array($email , $mdp));
+						$userexist=$requser->rowCount();  
+						if($userexist==0)
+						{
+							echo "c'est ok";
+							$insertintocompte = $bdd->prepare("INSERT INTO personne(email, date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?, ?)");
+							$insertintocompte->execute(array($email, $datenaissance, $nom, $genre, $numtel, $prenom));
+							$erreur = "Votre compte a bien été créé !";
+						}
+						else
+						{
+							$erreur="Compte déja existant"; 
+						}
+						
 					}
 					else
 					{
