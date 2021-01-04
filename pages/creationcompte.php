@@ -38,7 +38,7 @@
 								$idpersonne = $requser->execute(array($nom , $numtel));
 								//création de la ligne compte
 								$etat = 0;
-								$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, idpersonne) VALUES(?, ?, ?, ?, ?)");
+								$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, id_personne) VALUES(?, ?, ?, ?, ?)");
 								$insertintocompte->execute(array($today, $etat, $email, $mdp, $idpersonne));
 
 								$erreur = "Votre compte a bien été créé !";
