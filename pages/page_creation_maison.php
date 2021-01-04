@@ -25,7 +25,7 @@
 				$rueexist=$reqrue->rowCount();
 				if($rueexist==0)
 				{
-					header("Location: pages/page_proprietaire.php?id=".$_SESSION['id']);
+					header("Location: page_proprietaire.php");
 				}
 				else
 				{
