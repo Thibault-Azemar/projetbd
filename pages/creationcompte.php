@@ -20,40 +20,49 @@
 				{
 					if ($mdp == $mdp2)
 					{
-    					if($datenaissance < $dat18)
-    					{
-							$requser=$bdd->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
-							$requser->execute(array($email , $mdp));
-							$userexist=$requser->rowCount();  
-							if($userexist==0)
-							{
-								echo "c'est ok";
-								$datenaissance = $datenaissance->format('Y-m-d');
-								$today = $today->format('Y-m-d');
-								//création de la ligne personne
-								$insertintopersonne = $bdd->prepare("INSERT INTO personne(date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?)");
-								$insertintopersonne->execute(array($datenaissance, $nom, $genre, $numtel, $prenom));
-								//récupération de l'id personne
-								$requid=$bdd->prepare("SELECT id_personne FROM personne WHERE nom = ? AND num_tel = ?"); 
-								$idpersonne = $requser->execute(array($nom , $numtel));
-								//création de la ligne compte
-								$etat = 0;
-								$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, id_personne) VALUES(?, ?, ?, ?, ?)");
-								$insertintocompte->execute(array($today, $etat, $email, $mdp, $idpersonne));
+						$reqper=$bdd->prepare("SELECT * FROM personne WHERE nom = ? AND prenom = ? AND num_tel = ?"); 
+		                $reqper->execute(array($nom , $prenom, $numtel));
+		                $persexist=$reqper->rowCount();
+		                if($persexist==0)
+		                {
+	    					if($datenaissance < $dat18)
+	    					{
+								$requser=$bdd->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
+								$requser->execute(array($email , $mdp));
+								$userexist=$requser->rowCount();  
+								if($userexist==0)
+								{
+									echo "c'est ok";
+									$datenaissance = $datenaissance->format('Y-m-d');
+									$today = $today->format('Y-m-d');
+									//création de la ligne personne
+									$insertintopersonne = $bdd->prepare("INSERT INTO personne(date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?)");
+									$insertintopersonne->execute(array($datenaissance, $nom, $genre, $numtel, $prenom));
+									//récupération de l'id personne
+									$requid=$bdd->prepare("SELECT id_personne FROM personne WHERE nom = ? AND num_tel = ?"); 
+									$idpersonne = $requser->execute(array($nom , $numtel));
+									//création de la ligne compte
+									$etat = 0;
+									$insertintocompte = $bdd->prepare("INSERT INTO compte(date_creation, etat, email, motdepasse, id_personne) VALUES(?, ?, ?, ?, ?)");
+									$insertintocompte->execute(array($today, $etat, $email, $mdp, $idpersonne));
 
-								$erreur = "Votre compte a bien été créé !";
+									$erreur = "Votre compte a bien été créé !";
 
+								}
+								else
+								{
+									$erreur="Compte déja existant"; 
+								}
 							}
 							else
 							{
-								$erreur="Compte déja existant"; 
+								$erreur = "Vous n'avez pas 18 ans !";
 							}
 						}
 						else
 						{
-							$erreur = "Vous n'avez pas 18 ans !";
-						}
-						
+							$erreur = "la personne a deja un compte !";
+						}	
 					}
 					else
 					{
