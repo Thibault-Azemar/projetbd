@@ -8,27 +8,39 @@
 				$nom = htmlspecialchars($_POST['nom']);
 				$prenom = htmlspecialchars($_POST['prenom']);
 				$email = htmlspecialchars($_POST['email']);
+				$genre = htmlspecialchars($_POST['genre']);
+				$numtel = htmlspecialchars($_POST['numtel']);
 				$mdp = sha1($_POST['mdp']);
 				$mdp2 = sha1($_POST['mdp2']);
-
+				$datenaissance = new DateTime($_POST['datenaissance']);
+				$today = new DateTime();
+				$dat18 = $today->sub(new DateInterval('P18Y'));
 				
 				if(filter_var($email, FILTER_VALIDATE_EMAIL))
 				{
 					if ($mdp == $mdp2)
 					{
-						$requser=$BDD->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
-						$requser->execute(array($email , $mdp));
-						$userexist=$requser->rowCount();  
-						if($userexist==0)
-						{
-							echo "c'est ok";
-							$insertintocompte = $bdd->prepare("INSERT INTO personne(email, date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?, ?)");
-							$insertintocompte->execute(array($email, $datenaissance, $nom, $genre, $numtel, $prenom));
-							$erreur = "Votre compte a bien été créé !";
+    					if($datenaissance < $dat18)
+    					{
+							$requser=$bdd->prepare("SELECT * FROM compte WHERE email = ? AND motdepasse = ?"); 
+							$requser->execute(array($email , $mdp));
+							$userexist=$requser->rowCount();  
+							if($userexist==0)
+							{
+								echo "c'est ok";
+								$datenaissance = $datenaissance->format('d/m/Y');
+								$insertintopersonne = $bdd->prepare("INSERT INTO personne(date_naissance, nom, genre, num_tel, prenom) VALUES(?, ?, ?, ?, ?, ?)");
+								$insertintopersonne->execute(array($datenaissance, $nom, $genre, $numtel, $prenom));
+								$erreur = "Votre compte a bien été créé !";
+							}
+							else
+							{
+								$erreur="Compte déja existant"; 
+							}
 						}
 						else
 						{
-							$erreur="Compte déja existant"; 
+							$erreur = "Vous n'avez pas 18 ans !";
 						}
 						
 					}
@@ -98,7 +110,7 @@
 								<label for="formulaire">Date de naissance :</label>
 							</td>
 							<td>
-								<input type="date" id="datenaissance"name="datenaissance" value="<?php if(isset($datenaissance)) { echo $datenaissance; }?>" />
+								<input type="date" id="datenaissance"name="datenaissance" />
 							</td>
 						</tr>
 						<tr>
