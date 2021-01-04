@@ -51,21 +51,18 @@ session_start();
    				{
    					$reqconso=$BDD->prepare("SELECT * FROM consomme WHERE Id_appareil= ?"); 
    							$reqconso->execute(array($appareilinfo['Id_Appareil'])); 
-   					?><td><?php echo $appareilinfo['description'];
+   					?><td><?php echo $appareilinfo['description'];?><td> <?php 
 
    					while($infoconso=$reqconso->fetch()){ 
    					$reqressources=$BDD->prepare("SELECT * FROM ressources WHERE Id_Ressources= ?"); 
    					$reqressources->execute(array($infoconso['Id_Ressources'])); 
    							$ressourcesinfo=$reqressources->fetch(); 
    							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";  
-   					}
+   				} 
    				}
 			}
    		}
    	}
-
-
-   					
    			?>
    		</tr></TABLE>
          <?php
