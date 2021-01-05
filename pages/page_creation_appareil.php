@@ -13,15 +13,53 @@
 		$emission = htmlspecialchars($_POST['emission']);
 		$ressource = htmlspecialchars($_POST['ressource']);
 		$substance = htmlspecialchars($_POST['substance']);
+		$lien = htmlspecialchars($_POST['lien']);
 		
-		if(!empty($_POST['libelle']) AND !empty($_POST['desc']) AND !empty($_POST['type_appareil']) AND !empty($_POST['conso']) AND !empty($_POST['emission']) AND !empty($_POST['ressource']) AND !empty($_POST['substance']))
+		if(!empty($_POST['libelle']) AND !empty($_POST['desc']) AND !empty($_POST['type_appareil']) AND !empty($_POST['conso']) AND !empty($_POST['emission']) AND !empty($_POST['ressource']) AND !empty($_POST['substance']) AND !empty($_POST['lien']))
 		{
 			
 			$desclength = strlen($desc);
 			
 			if($desclength <= 30)
 			{
-				echo 'bravo';
+				$reqressource=$BDD->prepare("SELECT * FROM ressources WHERE libele = ?"); 
+				$reqressource->execute(array($ressource));
+				$ressourceexist=$reqressource->rowCount();
+				if($ressourceexist == 1)
+				{
+					$reqsubstance=$BDD->prepare("SELECT * FROM substances WHERE libele = ?"); 
+					$reqsubstance->execute(array($substance));
+					$substanceexist=$reqsubstance->rowCount();
+					if($substanceexist == 1)
+					{
+						$reqtypeappareil=$BDD->prepare("SELECT * FROM type_appareil WHERE Id_Type_appareil = ?"); 
+						$reqtypeappareil->execute(array($type_appareil));
+						$typeappareilexist=$reqtypeappareil->rowCount();
+						
+						if($typeappareilexist == 0 )
+						{
+							$inserttypeappareil = $BDD->prepare("INSERT INTO type_appareil(Id_Type_appareil) VALUES(?)");
+							$inserttypeappareil->execute(array($type_appareil));
+						}
+						
+						$insertappareil = $BDD->prepare("INSERT INTO appareil(description, libelle, Id_Type_appareil , conso_par_h, emission_par_h) VALUES(?, ?, ?, ?, ?)");
+						$insertappareil->execute(array($desc, $libelle, $type_appareil, $conso, $emission));
+						
+						$reqidappareil = $BDD->prepare("SELECT Id_Appareil FROM appareil WHERE description = ?");
+						$reqidappareil->execute(array($desc));
+						$idappareil = $reqidappareil->fetch();
+						$reqidappareil->closeCursor();
+						
+						$insertlien = $BDD->prepare("INSERT INTO video(Lien, Id_Appareil) VALUES(?, ?)");
+						$insertlien->execute(array($lien, $idappareil['Id_Appareil']));
+						
+						$insertemet = $BDD->prepare("INSERT INTO emet(Id_Appareil, Id_Substances, Emmission_par_h) VALUES(?, ?, ?)");
+						$insertemet->execute(array($idappareil['Id_Appareil'], , $emission));
+						
+						$erreur = "Votre appareil à bien été ajouté";
+						header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
+					}
+				}
 			}
 			else
 			{
@@ -108,6 +146,15 @@
 						</td>
 						<td>
 							<input type="text" placeholder="Substance émise" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<label for="Lien vidéo">
+							Lien vidéo:</label>
+						</td>
+						<td>
+							<input type="text" placeholder="Lien de la vidéo descriptive" id="lien" name="lien" value="<?php if(isset($lien)) { echo $lien; }?>" />
 						</td>
 					</tr>
 					<tr>
