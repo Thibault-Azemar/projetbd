@@ -42,13 +42,18 @@ session_start();
 
         	$reqville->execute(array($infomaison['Id_Ville'])); 
         	$infoville=$reqville->fetch(); 
-        	echo "Maison n°".$infomaison['Id_Maison']." ".$infomaison['Num_rue']." ".$infomaison['Rue']." ".$infoville['Nom']; 
+        	
+        	if($infomaison['Id_Maison']!='1')
+        	{
         	?> <tr><td> <?php
+        	} 
+        	echo "Maison n°".$infomaison['Id_Maison']." ".$infomaison['Num_rue']." ".$infomaison['Rue']." ".$infoville['Nom']; 
+        	
          	
 
 
-			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE Id_Personne  = ?");
-   			$reqappart->execute(array($getid)); 
+			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE appartement.Id_Personne  = ? AND appartement.Id_Maison= ? ");
+   			$reqappart->execute(array($getid,$infomaison['Id_Maison'])); 
    			
 
    	{
@@ -95,7 +100,7 @@ session_start();
 			?> <td> <?php } ?> <?php
    		?> </td></tr><td>	<?php }
    	}
- ?> </tr> <?php } 
+ ?> </tr> <?php }
    			?>
    		</td></td></TABLE>
          <?php
