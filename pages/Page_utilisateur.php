@@ -75,7 +75,15 @@ session_start();
    				{
    					$reqconso=$BDD->prepare("SELECT * FROM consomme WHERE Id_appareil= ?"); 
    							$reqconso->execute(array($appareilinfo['Id_Appareil'])); 
-   					?><td><?php echo $appareilinfo['description'];?><td> <?php 
+   					?><td><?php echo $appareilinfo['description'];
+   					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
+   					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
+   					$infovideo=$reqvideo->fetch(); 
+   					?>
+   				    </br>
+   					<a href="<?php echo $infovideo['Lien']; ?>"> video</a> <?php
+   					
+   					?><td> <?php 
 
    					while($infoconso=$reqconso->fetch()){ 
    					$reqressources=$BDD->prepare("SELECT * FROM ressources WHERE Id_Ressources= ?"); 
