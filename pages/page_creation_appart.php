@@ -3,6 +3,8 @@
 	session_start();
 	
 	$bdd = new PDO('mysql:host=127.0.0.1;dbname=bddphp','root','');
+
+	$idpersonne = $_SESSION['id'];
 	
 	if(isset($_POST['boutton_appart']))
 	{
@@ -20,20 +22,34 @@
 			$requidville=$bdd->prepare("SELECT Id_Ville FROM ville WHERE Nom = ? AND CP = ? "); 
 			$requidville->execute(array($ville, $cp));
 			$idville=$requidville->fetch();
-		
-			/* requete pour avoir id maison*/
-			$requid=$bdd->prepare("SELECT Id_Maison FROM maison WHERE Rue = ? AND Num_rue = ? AND Id_Ville = ?"); 
-			$requid->execute(array($rue , $numrue, $idville));
-			$idmaison=$requid->fetch();
+			$villeexist=$requidville->rowCount();
+			if($villeexist != 0)
+			{
+				/* requete pour avoir id maison*/
+				$requid=$bdd->prepare("SELECT Id_Maison FROM maison WHERE Rue = ? AND Num_rue = ? AND Id_Ville = ?"); 
+				$requid->execute(array($rue , $numrue, $idville));
+				$idmaison=$requid->fetch();
+				$maisonexist=$requid->rowCount();  
+				if($maisonexist != 0)
+				{
+					/* ajout  de l'appartement dans la base de donnée */
+					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_Personne, date_debut) VALUES(?, ?, ?, ?, ?)");
+					$insertintoappar->execute(array($degre_secu, $nbpiece, $idmaison, $idpersonne, $dateentre));
+				}
+				else
+				{
+					$erreur = "la maison n'existe pas, veuillez la créer";
+				}
+			}
+			else
+			{
+				$erreur = "La ville n'existe pas";
+			}
 		}
 		else
 		{
 			$erreur = "Veuillez remplir tous les champs !";
 		}
-	}
-	else
-	{
-		echo "pas ok";
 	}
 ?>
 <!doctype html>
