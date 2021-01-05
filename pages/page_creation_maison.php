@@ -6,7 +6,7 @@
 	
 	if(isset($_POST['boutton_maison']))
 	{
-		if(!empty($_POST['nommaison']) AND !empty($_POST['rue']) AND !empty($_POST['ville']) AND !empty($_POST['cp']) AND !empty($_POST['dept']) AND !empty($_POST['region']) AND !empty($_POST['degre_isolation']) AND !empty($_POST['eco_immeuble']))
+		if(!empty($_POST['nommaison']) AND !empty($_POST['rue']) AND !empty($_POST['ville']) AND !empty($_POST['cp']) AND !empty($_POST['dept']) AND !empty($_POST['region']) AND !empty($_POST['degre_isolation']) AND !empty($_POST['eco_immeuble']) AND !empty($_POST['datedebut']))
 		{
 			$nommaison = htmlspecialchars($_POST['nommaison']);
 			$rue = htmlspecialchars($_POST['rue']);
@@ -17,6 +17,7 @@
 			$region = htmlspecialchars($_POST['region']);
 			$degre_isolation = htmlspecialchars($_POST['degre_isolation']);
 			$eco_immeuble = htmlspecialchars($_POST['eco_immeuble']);
+			$datedebut = htmlspecialchars($_POST['datedebut']);
 			
 			$cplength = strlen($cp);
 			
@@ -76,10 +77,16 @@
 					$idville = $reqidville->fetch();
 					$reqidville->closeCursor();
 					
-					$insertmaison = $BDD->prepare("INSERT INTO maison(Nom, Rue, Num_rue, degre_isolation, eco_immeuble, Id_Ville) VALUES(?, ?, ?, ?, ?, ?)");
-					$insertmaison->execute(array($nommaison, $rue, $numrue, $degre_isolation, $eco_immeuble, $idville['Id_Ville']));
-					echo 'bravo';
-					/*header("Location: Page_utilisateur.php".$_SESSION['id']);*/
+					$today = new DateTime();
+					$today = $today->format('Y-m-d');
+					
+					$datedebut = new DateTime($_POST['datedebut']);
+					$datedebut = $datedebut->format('Y-m-d');
+					
+					$insertmaison = $BDD->prepare("INSERT INTO maison(Nom, Rue, Num_rue, degre_isolation, eco_immeuble, Id_Ville, Id_Personne, date_debut, date_fin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					$insertmaison->execute(array($nommaison, $rue, $numrue, $degre_isolation, $eco_immeuble, $idville['Id_Ville'], $_SESSION['id'], $datedebut, $today));
+					
+					header("Location: Page_utilisateur.php".$_SESSION['id']);
 				}
 				else
 				{
@@ -189,6 +196,15 @@
 						</td>
 						<td>
 							<input type="number" placeholder="Entrer le degré d'isolation" id="eco_immeuble" name="eco_immeuble" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<label for="Date de début de possession">
+							Date de début de possession:</label>
+						</td>
+						<td>
+							<input type="date" placeholder="Entrer la date de début de possession" id="datedebut" name="datedebut" />
 						</td>
 					</tr>
 					<tr>
