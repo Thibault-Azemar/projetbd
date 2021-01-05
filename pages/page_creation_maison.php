@@ -78,14 +78,11 @@
 					$idville = $reqidville->fetch();
 					$reqidville->closeCursor();
 					
-					$today = new DateTime();
-					$today = $today->format('Y-m-d');
-					
 					$datedebut = new DateTime($_POST['datedebut']);
 					$datedebut = $datedebut->format('Y-m-d');
 					
 					$insertmaison = $BDD->prepare("INSERT INTO maison(Nom, Rue, Num_rue, degre_isolation, eco_immeuble, Id_Ville, Id_Personne, date_debut, date_fin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-					$insertmaison->execute(array($nommaison, $rue, $numrue, $degre_isolation, $eco_immeuble, $idville['Id_Ville'], $_SESSION['id'], $datedebut, $today));
+					$insertmaison->execute(array($nommaison, $rue, $numrue, $degre_isolation, $eco_immeuble, $idville['Id_Ville'], $_SESSION['id'], $datedebut, $datedebut));
 					
 					$erreur = "Votre maison à bien été ajoutée";
 					header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
