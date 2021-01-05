@@ -80,6 +80,8 @@ session_start();
    				{
    					$reqconso=$BDD->prepare("SELECT * FROM consomme WHERE Id_appareil= ?"); 
    							$reqconso->execute(array($appareilinfo['Id_Appareil'])); 
+   					$reqemission=$BDD->prepare("SELECT * FROM emet WHERE Id_Appareil=? "); 
+   					$reqemission->execute(array($appareilinfo['Id_Appareil'])); 
    					?><td><?php echo $appareilinfo['description'];
    					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
@@ -89,13 +91,23 @@ session_start();
    					<a href="<?php echo $infovideo['Lien']; ?>"> video</a> <?php
    					
    					?><td> <?php 
-
+					echo "Conso :  "."</br>"; 
    					while($infoconso=$reqconso->fetch()){ 
    					$reqressources=$BDD->prepare("SELECT * FROM ressources WHERE Id_Ressources= ?"); 
    					$reqressources->execute(array($infoconso['Id_Ressources'])); 
    							$ressourcesinfo=$reqressources->fetch(); 
-   							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";  
-   				} 	
+   							
+   							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";
+   							   
+   				} 	echo "------"."</br>";
+   					echo "Emission : "."</br>"; 
+   					while($infoemission=$reqemission->fetch()){
+   						$reqsubstances=$BDD->prepare("SELECT * FROM substances WHERE Id_Substances= ? "); 
+   						$reqsubstances->execute(array($infoemission['Id_Substances'])); 
+   						$infosubstances=$reqsubstances->fetch(); 
+   						
+   						echo $infoemission['Emmission_par_h']." ".$infosubstances['libele']; 
+   					}
    				}?><tr><td></td> <?php 
 			?> <td> <?php } ?> <?php
    		?> </td></tr><td>	<?php }
