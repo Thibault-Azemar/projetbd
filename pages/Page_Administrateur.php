@@ -26,23 +26,25 @@ session_start();
 		
 		<?php
 		
-		$reqadmin = $bdd->prepare("SELECT etat FROM compte WHERE Id_Compte= ?");
-   		$reqadmin->execute(array($_SESSION['id']));
+		$reqadmin = $BDD->prepare("SELECT etat FROM compte WHERE Id_Compte= ?");
+   		$reqadmin->execute(array("2"));
    		$infoadmin = $reqadmin->fetch();
-   		if($infoadmin == '0')
-   		{
-   			echo "Vous n'êtes pas administrateur vous ne pouvez pas avoir accès à cette page.";
-   		
    		?>
    		
-   		<a href="../Page_utilisateur.php">page utilisateur</a>
+   		
 
-
+      <?php if($infoadmin == '0')
+      {
+        echo "Vous n'êtes pas administrateur vous ne pouvez pas avoir accès à cette page.";
+      }
+      ?>
+    </br>
+      <a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>">page utilisateur</a>
 
 
 	</body>
 </html>
 <?php
 }
-}
+
 ?>
