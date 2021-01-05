@@ -86,7 +86,7 @@ session_start();
    					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					$infovideo=$reqvideo->fetch(); 
-   					$id_app=$appareilinfo['Id_Appareil']; 
+   					 $id_app=""; 
    					?>
 
            			 <button onclick="myFunction()">Demarrer</button>
@@ -94,7 +94,11 @@ session_start();
 
 					<script>
 					function myFunction() {
-						<?php  if($id_app==$appareilinfo['Id_Appareil']){
+					<?php $id_app=$appareilinfo['Id_Appareil']; ?>
+
+					</script>
+					<?php  
+					if($id_app==$appareilinfo['Id_Appareil']){
 						 $date_depart = new DateTime();
 						
 
@@ -106,8 +110,6 @@ session_start();
                        
 					}
 					?>
-
-								</script>
 					<script>
                   <?php
                     

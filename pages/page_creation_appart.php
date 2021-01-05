@@ -19,7 +19,7 @@
 			$ville = htmlspecialchars($_POST['ville']);
 
 			/* requete pour avoir id ville*/
-			$requidville=$bdd->prepare("SELECT Id_Ville FROM ville WHERE Nom = ? AND CP = ? "); 
+			$requidville=$bdd->prepare("SELECT * FROM ville WHERE Nom = ? AND CP = ? "); 
 			$requidville->execute(array($ville, $cp));
 			$idville=$requidville->fetch();
 			$villeexist=$requidville->rowCount();
@@ -27,14 +27,14 @@
 			{
 				/* requete pour avoir id maison*/
 				$requid=$bdd->prepare("SELECT Id_Maison FROM maison WHERE Rue = ? AND Num_rue = ? AND Id_Ville = ?"); 
-				$requid->execute(array($rue , $numrue, $idville));
+				$requid->execute(array($rue , $numrue, $idville['Id_Ville']));
 				$idmaison=$requid->fetch();
 				$maisonexist=$requid->rowCount();  
 				if($maisonexist != 0)
 				{
 					/* ajout  de l'appartement dans la base de donnée */
 					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_Personne, date_debut) VALUES(?, ?, ?, ?, ?)");
-					$insertintoappar->execute(array($degre_secu, $nbpiece, $idmaison, $idpersonne, $dateentre));
+					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison, $idpersonne, $dateentre));
 				}
 				else
 				{
