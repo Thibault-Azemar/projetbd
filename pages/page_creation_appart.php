@@ -34,8 +34,9 @@
 				{
 					/* ajout  de l'appartement dans la base de donnée */
 					$dateentre = $dateentre->format('Y-m-d');
-					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_Personne, date_debut) VALUES(?, ?, ?, ?, ?)");
-					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison['Id_Maison'], $idpersonne, $dateentre));
+					$idtypeappart = 0;
+					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_type_appart, Id_Personne, date_debut, date_fin) VALUES(?, ?, ?, ?, ?,?,?)");
+					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison['Id_Maison'], $idtypeappart, $idpersonne, $dateentre, $dateentre));
 
 				}
 				else
