@@ -6,18 +6,19 @@
 	
 	if(isset($_POST['boutton_maison']))
 	{
+		$nommaison = htmlspecialchars($_POST['nommaison']);
+		$rue = htmlspecialchars($_POST['rue']);
+		$numrue = htmlspecialchars($_POST['numrue']);
+		$ville = htmlspecialchars($_POST['ville']);
+		$cp = htmlspecialchars($_POST['cp']);
+		$dept = htmlspecialchars($_POST['dept']);
+		$region = htmlspecialchars($_POST['region']);
+		$degre_isolation = htmlspecialchars($_POST['degre_isolation']);
+		$eco_immeuble = htmlspecialchars($_POST['eco_immeuble']);
+		$datedebut = htmlspecialchars($_POST['datedebut']);
+		
 		if(!empty($_POST['nommaison']) AND !empty($_POST['rue']) AND !empty($_POST['ville']) AND !empty($_POST['cp']) AND !empty($_POST['dept']) AND !empty($_POST['region']) AND !empty($_POST['degre_isolation']) AND !empty($_POST['eco_immeuble']) AND !empty($_POST['datedebut']))
 		{
-			$nommaison = htmlspecialchars($_POST['nommaison']);
-			$rue = htmlspecialchars($_POST['rue']);
-			$numrue = htmlspecialchars($_POST['numrue']);
-			$ville = htmlspecialchars($_POST['ville']);
-			$cp = htmlspecialchars($_POST['cp']);
-			$dept = htmlspecialchars($_POST['dept']);
-			$region = htmlspecialchars($_POST['region']);
-			$degre_isolation = htmlspecialchars($_POST['degre_isolation']);
-			$eco_immeuble = htmlspecialchars($_POST['eco_immeuble']);
-			$datedebut = htmlspecialchars($_POST['datedebut']);
 			
 			$cplength = strlen($cp);
 			
@@ -86,7 +87,8 @@
 					$insertmaison = $BDD->prepare("INSERT INTO maison(Nom, Rue, Num_rue, degre_isolation, eco_immeuble, Id_Ville, Id_Personne, date_debut, date_fin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 					$insertmaison->execute(array($nommaison, $rue, $numrue, $degre_isolation, $eco_immeuble, $idville['Id_Ville'], $_SESSION['id'], $datedebut, $today));
 					
-					header("Location: Page_utilisateur.php".$_SESSION['id']);
+					$erreur = "Votre maison à bien été ajoutée";
+					header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
 				}
 				else
 				{
@@ -123,7 +125,7 @@
 							Nom de la maison:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Entrer le nom de la maison" id="nommaison" name="nommaison" />
+							<input type="text" placeholder="Entrer le nom de la maison" id="nommaison" name="nommaison" value="<?php if(isset($nommaison)) { echo $nommaison; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -132,7 +134,7 @@
 							Rue:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Adresse de la maison" id="rue" name="rue" />
+							<input type="text" placeholder="Adresse de la maison" id="rue" name="rue" value="<?php if(isset($rue)) { echo $rue; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -141,7 +143,7 @@
 							Numéro de Rue:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Numéro de la rue" id="numrue" name="numrue" />
+							<input type="number" placeholder="Numéro de la rue" id="numrue" name="numrue" value="<?php if(isset($numrue)) { echo $numrue; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -150,7 +152,7 @@
 							Ville:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Ville" id="ville" name="ville" />
+							<input type="text" placeholder="Ville" id="ville" name="ville" value="<?php if(isset($ville)) { echo $ville; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -159,7 +161,7 @@
 							Code Postale:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Code Postale" id="cp" name="cp" />
+							<input type="number" placeholder="Code Postale" id="cp" name="cp" value="<?php if(isset($cp)) { echo $cp; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -168,7 +170,7 @@
 							Département:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Département" id="dept" name="dept" />
+							<input type="text" placeholder="Département" id="dept" name="dept" value="<?php if(isset($dept)) { echo $dept; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -177,7 +179,7 @@
 							Région:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Région" id="region" name="region" />
+							<input type="text" placeholder="Région" id="region" name="region" value="<?php if(isset($region)) { echo $region; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -186,7 +188,7 @@
 							Degré d'isolation:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Entrer le degré d'isolation" id="degre_isolation" name="degre_isolation" />
+							<input type="number" placeholder="Entrer le degré d'isolation" id="degre_isolation" name="degre_isolation" value="<?php if(isset($degre_isolation)) { echo $degre_isolation; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -195,7 +197,7 @@
 							Eco immeuble:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Entrer le degré d'isolation" id="eco_immeuble" name="eco_immeuble" />
+							<input type="number" placeholder="Entrer le degré d'isolation" id="eco_immeuble" name="eco_immeuble" value="<?php if(isset($eco_immeuble)) { echo $eco_immeuble; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -204,7 +206,7 @@
 							Date de début de possession:</label>
 						</td>
 						<td>
-							<input type="date" placeholder="Entrer la date de début de possession" id="datedebut" name="datedebut" />
+							<input type="date" placeholder="Entrer la date de début de possession" id="datedebut" name="datedebut" value="<?php if(isset($datedebut)) { echo $datedebut; }?>" />
 						</td>
 					</tr>
 					<tr>
