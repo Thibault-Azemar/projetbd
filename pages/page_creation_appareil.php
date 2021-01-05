@@ -190,38 +190,38 @@
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur minimale par jour">
-							Valeur minimale par jour:</label>
+							<label for="Valeur minimale par jour de la substance">
+							Valeur minimale par jour de la substance:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur minimale par jour" id="valeurmin" name="valeurmin" value="<?php if(isset($valeurmin)) { echo $valeurmin; }?>" />
+							<input type="number" placeholder="Valeur minimale par jour de la substance" id="valeurmin" name="valeurmin" value="<?php if(isset($valeurmin)) { echo $valeurmin; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur maximale par jour">
-							Valeur maximale par jour:</label>
+							<label for="Valeur maximale par jour de la substance">
+							Valeur maximale par jour de la substance:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur maximale par jour" id="valeurmax" name="valeurmax" value="<?php if(isset($valeurmax)) { echo $valeurmax; }?>" />
+							<input type="number" placeholder="Valeur maximale par jour de la substance" id="valeurmax" name="valeurmax" value="<?php if(isset($valeurmax)) { echo $valeurmax; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur critique par jour">
-							Valeur critique par jour:</label>
+							<label for="Valeur critique par jour de la substance">
+							Valeur critique par jour de la substance:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur critique par jour" id="valeurcrit" name="valeurcrit" value="<?php if(isset($valeurcrit)) { echo $valeurcrit; }?>" />
+							<input type="number" placeholder="Valeur critique par jour de la substance" id="valeurcrit" name="valeurcrit" value="<?php if(isset($valeurcrit)) { echo $valeurcrit; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur idéale par jour">
-							Valeur idéale par jour:</label>
+							<label for="Valeur idéale par jour de la substance">
+							Valeur idéale par jour de la substance:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur idéale par jour" id="valeuride" name="valeuride" value="<?php if(isset($valeuride)) { echo $valeuride; }?>" />
+							<input type="number" placeholder="Valeur idéale par jour de la substance" id="valeuride" name="valeuride" value="<?php if(isset($valeuride)) { echo $valeuride; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -256,44 +256,44 @@
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur minimale par jour">
-							Valeur minimale par jour:</label>
+							<label for="Valeur minimale par jour de la ressource">
+							Valeur minimale par jour de la ressource:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur minimale par jour" id="valeurminres" name="valeurminres" value="<?php if(isset($valeurminres)) { echo $valeurminres; }?>" />
+							<input type="number" placeholder="Valeur minimale par jour de la ressource" id="valeurminres" name="valeurminres" value="<?php if(isset($valeurminres)) { echo $valeurminres; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur maximale par jour">
-							Valeur maximale par jour:</label>
+							<label for="Valeur maximale par jour de la ressource">
+							Valeur maximale par jour de la ressource:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur maximale par jour" id="valeurmaxres" name="valeurmaxres" value="<?php if(isset($valeurmaxres)) { echo $valeurmaxres; }?>" />
+							<input type="number" placeholder="Valeur maximale par jour de la ressource" id="valeurmaxres" name="valeurmaxres" value="<?php if(isset($valeurmaxres)) { echo $valeurmaxres; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur critique par jour">
-							Valeur critique par jour:</label>
+							<label for="Valeur critique par jour de la ressource">
+							Valeur critique par jour de la ressource:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur critique par jour" id="valeurcritres" name="valeurcritres" value="<?php if(isset($valeurcritres)) { echo $valeurcritres; }?>" />
+							<input type="number" placeholder="Valeur critique par jour de la ressource" id="valeurcritres" name="valeurcritres" value="<?php if(isset($valeurcritres)) { echo $valeurcritres; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Valeur idéale par jour">
-							Valeur idéale par jour:</label>
+							<label for="Valeur idéale par jour de la ressource">
+							Valeur idéale par jour de la ressource:</label>
 						</td>
 						<td>
-							<input type="number" placeholder="Valeur idéale par jour" id="valeurideres" name="valeurideres" value="<?php if(isset($valeurideres)) { echo $valeurideres; }?>" />
+							<input type="number" placeholder="Valeur idéale par jour de la ressource" id="valeurideres" name="valeurideres" value="<?php if(isset($valeurideres)) { echo $valeurideres; }?>" />
 						</td>
 					</tr>
 					<tr>
 						<td></td>
 						<td align="center">
-							<input type="submit" id="boutton_ressource" name="boutton_ressource" value="J'ajoute une nouvelle substance" />
+							<input type="submit" id="boutton_ressource" name="boutton_ressource" value="J'ajoute une nouvelle ressource" />
 						</td>
 					</tr>
 				</table>
