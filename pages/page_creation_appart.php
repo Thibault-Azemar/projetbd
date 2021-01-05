@@ -26,15 +26,17 @@
 			if($villeexist != 0)
 			{
 				/* requete pour avoir id maison*/
-				$requid=$bdd->prepare("SELECT Id_Maison FROM maison WHERE Rue = ? AND Num_rue = ? AND Id_Ville = ?"); 
+				$requid=$bdd->prepare("SELECT * FROM maison WHERE Rue = ? AND Num_rue = ? AND Id_Ville = ?"); 
 				$requid->execute(array($rue , $numrue, $idville['Id_Ville']));
 				$idmaison=$requid->fetch();
 				$maisonexist=$requid->rowCount();  
 				if($maisonexist != 0)
 				{
 					/* ajout  de l'appartement dans la base de donnée */
+					$dateentre = $dateentre->format('Y-m-d');
 					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_Personne, date_debut) VALUES(?, ?, ?, ?, ?)");
-					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison, $idpersonne, $dateentre));
+					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison['Id_Maison'], $idpersonne, $dateentre));
+
 				}
 				else
 				{
