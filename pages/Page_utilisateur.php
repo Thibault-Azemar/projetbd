@@ -86,9 +86,41 @@ session_start();
    					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					$infovideo=$reqvideo->fetch(); 
+   					$id_app=$appareilinfo['Id_Appareil']; 
    					?>
+
+           			 <button onclick="myFunction()">Demarrer</button>
+           			 <button onclick="Arreter()">Arreter</button>
+
+					<script>
+					function myFunction() {
+						<?php  if($id_app==$appareilinfo['Id_Appareil']){
+						 $date_depart = new DateTime();
+						
+
+                        $date_depart=$date_depart->format('Y-m-d H:i:s');
+                        echo $date_depart; 
+
+                        $insertintodureeconso = $BDD->prepare("INSERT INTO duree_de_conso (Id_Appareil, date_debut, date_fin) VALUES (?, ?,?)");
+                        $insertintodureeconso->execute(array($appareilinfo['Id_Appareil'], $date_depart, $date_depart));
+                       
+					}
+					?>
+
+								</script>
+					<script>
+                  <?php
+                    
+                        $date_fin = new DateTime();
+
+                        $date_fin=$date_fin->format('Y-m-d H:i:s')."\n";
+                        $insertintodureeconso=$BDD->prepare("UPDATE duree_de_conso SET date_fin = ? WHERE Id_Appareil = ?");
+
+                        $insertintodureeconso->execute(array($date_fin,$appareilinfo['Id_Appareil']));
+                     ?>
+                  	</script>
    				    </br>
-   					<a href="<?php echo $infovideo['Lien']; ?>"target="_blank"> video</a> <?php
+   					<a href="<?php echo $infovideo['Lien']; ?>"> video</a> <?php
    					
    					?><td> <?php 
 					echo "Conso :  "."</br>"; 
