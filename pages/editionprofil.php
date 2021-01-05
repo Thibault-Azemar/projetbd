@@ -42,7 +42,7 @@ if(isset($_SESSION['id'])) {
 ?>
 <html>
    <head>
-      <title>TUTO PHP</title>
+      <title>Projet BDD</title>
       <meta charset="utf-8">
    </head>
    <body>

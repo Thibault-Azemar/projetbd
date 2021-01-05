@@ -87,16 +87,17 @@ session_start();
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					$infovideo=$reqvideo->fetch(); 
    					?>
-            		<?php $NouveauD="Demarrer".$appareilinfo['Id_Appareil']; ?>
+            		
             <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
-                  <input type="submit" id="Demarrer" name="<?php $NouveauD ?>" value="Demarrer">
+                  <input type="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
                   <form>   
                   <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
                   <input type="submit" id="Arreter" name="Arreter" value="Arreter">
                   <form>   
 
 
-                  <?php 	  
+                  <?php 
+                  $NouveauD="Demarrer".$appareilinfo['Id_Appareil'];
                      if(!empty($_POST['Demarrer'])) {
                         $date_depart = new DateTime();
                         $date_depart = $date_depart->format('Y-m-d H:i:s');
@@ -153,6 +154,8 @@ session_start();
          <br />
          <a href="editionprofil.php">Editer mon profil</a>
          <a href="deconnexion.php">Se déconnecter</a>
+         <a href="Page_Administrateur.php">Page Administrateur</a>
+
          <?php
          }
          ?>
