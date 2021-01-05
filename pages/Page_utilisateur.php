@@ -21,8 +21,32 @@ session_start();
    <body>
       <div>
          <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; </h2>
+
+         <a href="page_creation_maison.php"><font color="#0000FF">Ajouter une maison</a>
+         </br>
+         	<a href="page_creation_appart">Ajouter un appartement</a>
+         	 </br>
+         		<a href="page_creation_appareil">Ajouter un appareil</a>
+         	</font>
+
          <br /><br />
          <?php 
+         	$reqmaison=$BDD->prepare("SELECT * FROM maison WHERE Id_Personne=?"); 
+         	$reqmaison->execute(array($getid)); 
+
+         	?><TABLE border=6 cellspacing=12 cellpadding=20><tr><td>
+         	<?php
+         	while($infomaison=$reqmaison->fetch())
+        {
+        	$reqville=$BDD->prepare("SELECT ville.Nom FROM ville RIGHT JOIN maison ON ville.Id_Ville=maison.Id_Ville WHERE maison.Id_Ville= ? "); 
+
+        	$reqville->execute(array($infomaison['Id_Ville'])); 
+        	$infoville=$reqville->fetch(); 
+        	echo "Maison n°".$infomaison['Id_Maison']." ".$infomaison['Num_rue']." ".$infomaison['Rue']." ".$infoville['Nom']; 
+        	?> <tr><td> <?php
+         	
+
+
 			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE Id_Personne  = ?");
    			$reqappart->execute(array($getid)); 
    			
@@ -30,7 +54,7 @@ session_start();
    	{
    					while ($num_appart = $reqappart->fetch())
    		{   
-   					?> <TABLE border=6 cellspacing=12 cellpadding=20><tr><td><?php echo "Appartement n°".$num_appart['Id_Appartement']; 	
+   					?> <td><?php echo "Appartement n°".$num_appart['Id_Appartement']; 	
    						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
 						$reqpiece->execute(array($num_appart['Id_Appartement']));   
    						?>
@@ -60,11 +84,12 @@ session_start();
    							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";  
    				} 	
    				}?><tr><td></td> <?php 
-			}
-   		}
+			?> <td> <?php } ?> <?php
+   		?> </td></tr><td>	<?php }
    	}
+ ?> </tr> <?php } 
    			?>
-   		</tr></TABLE>
+   		</td></td></TABLE>
          <?php
          if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
          ?>
