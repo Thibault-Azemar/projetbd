@@ -21,7 +21,7 @@ if(!empty($_POST['Demarrer'])) {
     $date_depart = new DateTime();
     echo "Date de Démarrage : \n".$date_depart->format('Y-m-d H:i:s')."\n";
 
-    $insertintodureeconso = $bdd->prepare("INSERT INTO duree_de_conso(Id_Appareil, date_debut, date_fin) VAlUES (?, ?, ?)");
+    $insertintodureeconso = $BDD->prepare("INSERT INTO duree_de_conso(Id_Appareil, date_debut, date_fin) VAlUES (?, ?, ?)");
     $insertintodureeconso->execute(array($reqappareil['Id_Appareil'], $date_depart));
 	}
 ?>
