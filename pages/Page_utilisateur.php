@@ -19,7 +19,7 @@ session_start();
       <meta charset="utf-8">
    </head>
    <body>
-      <div>
+      <div align="center">
          <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; </h2>
 
          <a href="page_creation_maison.php"><font color="#0000FF">Ajouter une maison</a>
