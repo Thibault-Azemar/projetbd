@@ -88,7 +88,7 @@ session_start();
    					$infovideo=$reqvideo->fetch(); 
    					?>
    				    </br>
-   					<a href="<?php echo $infovideo['Lien']; ?>"> video</a> <?php
+   					<a href="<?php echo $infovideo['Lien']; ?>"target="_blank"> video</a> <?php
    					
    					?><td> <?php 
 					echo "Conso :  "."</br>"; 
