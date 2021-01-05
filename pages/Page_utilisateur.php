@@ -154,7 +154,7 @@ session_start();
          <br />
          <a href="editionprofil.php">Editer mon profil</a>
          <a href="deconnexion.php">Se déconnecter</a>
-         <a href="Page_Administrateur.php">Page Administrateur</a>
+         <a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a>
 
          <?php
          }
