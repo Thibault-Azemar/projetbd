@@ -89,14 +89,15 @@ session_start();
    					?>
             
             <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
-                  <input type="submit" id="Demarrer" name="Demarrer" value="Demarrer">
+                  <input type="submit" id="Demarrer" name="Demarrer" value="Demarrer <?php echo $appareilinfo['Id_Appareil'];?>">
                   <form>   
                   <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
                   <input type="submit" id="Arreter" name="Arreter" value="Arreter">
                   <form>   
 
 
-                  <?php $date_depart="2021-01-05 18:15:50";  
+                  <?php 
+                  	$date_depart="2021-01-05 18:15:50";  
                      if(!empty($_POST['Demarrer'])) {
                         $date_depart = new DateTime();
                         $date_depart = $date_depart->format('Y-m-d H:i:s');
