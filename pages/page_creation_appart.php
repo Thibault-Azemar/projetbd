@@ -37,6 +37,8 @@
 					$idtypeappart = 0;
 					$insertintoappart = $bdd->prepare("INSERT INTO appartement(degre_de_secu, piece, Id_Maison, Id_type_appart, Id_Personne, date_debut, date_fin) VALUES(?, ?, ?, ?, ?,?,?)");
 					$insertintoappart->execute(array($degre_secu, $nbpiece, $idmaison['Id_Maison'], $idtypeappart, $idpersonne, $dateentre, $dateentre));
+					$erreur = "votre piece a bien été ajouté!";
+					header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
 
 				}
 				else

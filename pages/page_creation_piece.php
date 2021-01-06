@@ -37,6 +37,10 @@
 			$insertintopiece = $bdd->prepare("INSERT INTO piece(libelle, Id_Type_piece, Id_Appartement) VALUES(?, ?, ?)");
 			$insertintopiece->execute(array($libele, $idtypepiece['Id_Type_piece'], $idappartement));
 
+			$erreur = "l'appartement a bien été ajouté!";
+
+			header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
+
 		}
 		else
 		{
