@@ -11,6 +11,7 @@ session_start();
    $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
    $reqpersonne->execute(array($getid));
    $personneinfo = $reqpersonne->fetch();
+   
 
 ?>
 <html>
@@ -92,15 +93,17 @@ session_start();
    					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					$infovideo=$reqvideo->fetch(); 
-   					?>
+   					 
+                  ?>
+                  <dib>
             		
-            <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
+            <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
                   <input type="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
                   <form>   
                   <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
                   <input type="submit" id="Arreter" name="Arreter" value="Arreter">
                   <form>   
-
+                  </div>
 
                   <?php 
                   $NouveauD="Demarrer".$appareilinfo['Id_Appareil'];
