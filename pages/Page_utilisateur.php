@@ -88,7 +88,7 @@ session_start();
    							$reqconso->execute(array($appareilinfo['Id_Appareil'])); 
    					$reqemission=$BDD->prepare("SELECT * FROM emet WHERE Id_Appareil=? "); 
    					$reqemission->execute(array($appareilinfo['Id_Appareil'])); 
-   					?><td><?php echo $appareilinfo['description'];
+   					?><td><?php echo $appareilinfo['libelle'];
    					$reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					$reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					$infovideo=$reqvideo->fetch(); 
@@ -136,7 +136,7 @@ session_start();
    					$reqressources->execute(array($infoconso['Id_Ressources'])); 
    							$ressourcesinfo=$reqressources->fetch(); 
    							
-   							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['libele']."</br>";
+   							echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['description']."</br>";
    							   
    				} 	echo "------"."</br>";
    					echo "Emission : "."</br>"; 
@@ -145,7 +145,7 @@ session_start();
    						$reqsubstances->execute(array($infoemission['Id_Substances'])); 
    						$infosubstances=$reqsubstances->fetch(); 
    						
-   						echo $infoemission['Emmission_par_h']." ".$infosubstances['libele']; 
+   						echo $infoemission['Emmission_par_h']." ".$infosubstances['description']; 
    					}
    				}?><tr><td></td> <?php 
 			?> <td> <?php } ?> <?php
