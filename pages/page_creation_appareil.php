@@ -3,6 +3,11 @@ session_start();
 	
 	$BDD = new PDO('mysql:host=127.0.0.1;dbname=bddphp','root','');
 	
+	if(isset($_POST['boutton_ressource_substance']))
+	{
+		header("Location: page_creation_ressource_substance.php?id=".$_SESSION['id']);
+	}
+	
 	if(isset($_POST['boutton_appareil']))
 	{
 		$libelle = htmlspecialchars($_POST['libelle']);
@@ -184,6 +189,9 @@ session_start();
 						</td>
 					</tr>
 				</table>
+			</form>
+			<form method="POST" action="">
+				<input type="submit" id="boutton_ressource_substance" name="boutton_ressource_substance" value="J'ajoute une substance ou une ressource" />
 			</form>
 		</div>
 		<?php
