@@ -1,0 +1,208 @@
+CREATE TABLE Personne(
+   Id_Personne INT AUTO_INCREMENT,
+   email VARCHAR(50),
+   date_naissance DATE,
+   nom VARCHAR(40),
+   genre VARCHAR(40),
+   num_tel INT,
+   prenom VARCHAR(40),
+   PRIMARY KEY(Id_Personne)
+);
+
+CREATE TABLE Compte(
+   Id_Compte INT AUTO_INCREMENT,
+   date_creation DATE,
+   etat BOOLEAN,
+   email VARCHAR(50),
+   motdepasse VARCHAR(50),
+   Id_Personne INT NOT NULL,
+   PRIMARY KEY(Id_Compte),
+   UNIQUE(Id_Personne),
+   FOREIGN KEY(Id_Personne) REFERENCES Personne(Id_Personne)
+);
+
+CREATE TABLE Region(
+   Id_Region INT AUTO_INCREMENT,
+   Nom VARCHAR(50),
+   PRIMARY KEY(Id_Region)
+);
+
+CREATE TABLE Type_appart(
+   Id_type_appart INT AUTO_INCREMENT,
+   pieces_contenues VARCHAR(50),
+   PRIMARY KEY(Id_type_appart)
+);
+
+CREATE TABLE Ressources(
+   Id_Ressources INT AUTO_INCREMENT,
+   valeur_min_par_j INT,
+   valeur_max_par_j INT,
+   libele VARCHAR(50),
+   description VARCHAR(50),
+   valeur_critique_par_j INT,
+   valeur_ideale_par_j INT,
+   PRIMARY KEY(Id_Ressources)
+);
+
+CREATE TABLE Substances(
+   Id_Substances INT AUTO_INCREMENT,
+   valeur_min_par_j INT,
+   valeur_max_par_j INT,
+   libele VARCHAR(50),
+   description VARCHAR(50),
+   valeur_critique_par_j INT,
+   valeur_ideale_par_j INT,
+   PRIMARY KEY(Id_Substances)
+);
+
+CREATE TABLE Type_appareil(
+   Id_Type_appareil INT AUTO_INCREMENT,
+   PRIMARY KEY(Id_Type_appareil)
+);
+
+CREATE TABLE Historique_Appareil(
+   date_debut DATETIME,
+   date_fin DATETIME,
+   PRIMARY KEY(date_debut, date_fin)
+);
+
+CREATE TABLE Historique_Location(
+   date_debut DATE,
+   date_fin DATE,
+   PRIMARY KEY(date_debut, date_fin)
+);
+
+CREATE TABLE Historique_Posseder(
+   date_debut DATE,
+   date_fin DATE,
+   PRIMARY KEY(date_debut, date_fin)
+);
+
+CREATE TABLE Type_piece(
+   Id_Type_piece INT AUTO_INCREMENT,
+   nom_type VARCHAR(50),
+   PRIMARY KEY(Id_Type_piece)
+);
+
+CREATE TABLE Departement(
+   Id_Departement INT AUTO_INCREMENT,
+   Nom VARCHAR(50),
+   Id_Region INT NOT NULL,
+   PRIMARY KEY(Id_Departement),
+   FOREIGN KEY(Id_Region) REFERENCES Region(Id_Region)
+);
+
+CREATE TABLE Appareil(
+   Id_Appareil INT AUTO_INCREMENT,
+   description VARCHAR(50),
+   conso_par_h INT,
+   emission_par_h VARCHAR(50),
+   libelle VARCHAR(50),
+   Id_Type_appareil INT NOT NULL,
+   PRIMARY KEY(Id_Appareil),
+   FOREIGN KEY(Id_Type_appareil) REFERENCES Type_appareil(Id_Type_appareil)
+);
+
+CREATE TABLE Video(
+   Id_Video INT AUTO_INCREMENT,
+   Lien VARCHAR(50),
+   Id_Appareil INT NOT NULL,
+   PRIMARY KEY(Id_Video),
+   FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil)
+);
+
+CREATE TABLE Ville(
+   Id_Ville INT AUTO_INCREMENT,
+   Nom VARCHAR(50),
+   CP INT,
+   Id_Departement INT NOT NULL,
+   PRIMARY KEY(Id_Ville),
+   FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement)
+);
+
+CREATE TABLE Maison(
+   Id_Maison INT AUTO_INCREMENT,
+   degre_isolation INT,
+   eco_immeuble INT,
+   Nom VARCHAR(50),
+   Rue VARCHAR(50),
+   Num_rue INT,
+   Id_Personne INT NOT NULL,
+   date_debut DATE NOT NULL,
+   date_fin DATE NOT NULL,
+   Id_Ville INT NOT NULL,
+   PRIMARY KEY(Id_Maison),
+   FOREIGN KEY(Id_Personne) REFERENCES Personne(Id_Personne),
+   FOREIGN KEY(date_debut, date_fin) REFERENCES Historique_Posseder(date_debut, date_fin),
+   FOREIGN KEY(Id_Ville) REFERENCES Ville(Id_Ville)
+);
+
+CREATE TABLE Appartement(
+   Id_Appartement INT AUTO_INCREMENT,
+   degre_de_secu INT,
+   piece VARCHAR(50),
+   Id_Maison INT NOT NULL,
+   Id_type_appart INT NOT NULL,
+   Id_Personne INT NOT NULL,
+   date_debut DATE NOT NULL,
+   date_fin DATE NOT NULL,
+   PRIMARY KEY(Id_Appartement),
+   FOREIGN KEY(Id_Maison) REFERENCES Maison(Id_Maison),
+   FOREIGN KEY(Id_type_appart) REFERENCES Type_appart(Id_type_appart),
+   FOREIGN KEY(Id_Personne) REFERENCES Personne(Id_Personne),
+   FOREIGN KEY(date_debut, date_fin) REFERENCES Historique_Location(date_debut, date_fin)
+);
+
+CREATE TABLE Piece(
+   Id_Piece INT AUTO_INCREMENT,
+   libelle VARCHAR(50),
+   Id_Type_piece INT NOT NULL,
+   Id_Appartement INT NOT NULL,
+   PRIMARY KEY(Id_Piece),
+   FOREIGN KEY(Id_Type_piece) REFERENCES Type_piece(Id_Type_piece),
+   FOREIGN KEY(Id_Appartement) REFERENCES Appartement(Id_Appartement)
+);
+
+CREATE TABLE Appartient_piece(
+   Id_Piece INT,
+   Id_Appareil INT,
+   PRIMARY KEY(Id_Piece, Id_Appareil),
+   FOREIGN KEY(Id_Piece) REFERENCES Piece(Id_Piece),
+   FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil)
+);
+
+CREATE TABLE Consomme(
+   Id_Appareil INT,
+   Id_Ressources INT,
+   Consommation_par_h DOUBLE,
+   PRIMARY KEY(Id_Appareil, Id_Ressources),
+   FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil),
+   FOREIGN KEY(Id_Ressources) REFERENCES Ressources(Id_Ressources)
+);
+
+CREATE TABLE Emet(
+   Id_Appareil INT,
+   Id_Substances INT,
+   Emmission_par_h DOUBLE,
+   PRIMARY KEY(Id_Appareil, Id_Substances),
+   FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil),
+   FOREIGN KEY(Id_Substances) REFERENCES Substances(Id_Substances)
+);
+
+CREATE TABLE Duree_de_conso(
+   Id_Appareil INT,
+   date_debut DATETIME,
+   date_fin DATETIME,
+   PRIMARY KEY(Id_Appareil, date_debut, date_fin),
+   FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil),
+   FOREIGN KEY(date_debut, date_fin) REFERENCES Historique_Appareil(date_debut, date_fin)
+);
+
+CREATE TABLE nb_piece(
+   Id_type_appart INT,
+   Id_Type_piece INT,
+   nb_piece INT,
+   PRIMARY KEY(Id_type_appart, Id_Type_piece),
+   FOREIGN KEY(Id_type_appart) REFERENCES Type_appart(Id_type_appart),
+   FOREIGN KEY(Id_Type_piece) REFERENCES Type_piece(Id_Type_piece)
+);
