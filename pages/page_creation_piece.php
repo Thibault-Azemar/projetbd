@@ -30,7 +30,7 @@
 			$idtypepiece = $reqidtypepiece->fetch();
 			$reqidtypepiece->closeCursor();
 
-			$idappartement = 0; //récuperer l'id appart
+			$idappartement = $_GET['idappartement']; //récuperer l'id appart
 
 			//ajout de la piece
 
