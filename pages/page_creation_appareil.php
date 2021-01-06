@@ -175,7 +175,7 @@ session_start();
 							Substance:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Substance émise" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
+							<input type="text" placeholder="Null si jamais rien n'est émis" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
 						</td>
 					</tr>
 					<tr>
