@@ -3,6 +3,8 @@ session_start();
 	
 	$BDD = new PDO('mysql:host=127.0.0.1;dbname=bddphp','root','');
 	
+	$idpiece = $_GET['idpiece'];
+	
 	if(isset($_POST['boutton_ressource_substance']))
 	{
 		header("Location: page_creation_ressource_substance.php?id=".$_SESSION['id']);
@@ -72,6 +74,9 @@ session_start();
 						
 						$insertconso = $BDD->prepare("INSERT INTO consomme(Id_Appareil, Id_Ressources, Consommation_par_h) VALUES(?, ?, ?)");
 						$insertconso->execute(array($idappareil['Id_Appareil'], $idressource['Id_Ressources'], $emission));
+						
+						$insertpiece = $BDD->prepare("INSERT INTO appartient_piece(Id_Piece, Id_Appareil) VALUES(?, ?)");
+						$insertpiece->execute(array($idpiece['idpiece'] ,$idappareil['Id_Appareil']));
 						
 						$erreur = "Votre appareil à bien été ajouté";
 						header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
@@ -170,7 +175,7 @@ session_start();
 							Substance:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Substance émise" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
+							<input type="text" placeholder="Null si jamais rien n'est émis" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
 						</td>
 					</tr>
 					<tr>
