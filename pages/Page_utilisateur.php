@@ -59,7 +59,7 @@ session_start();
    	{
    					while ($num_appart = $reqappart->fetch())
    		{   
-   					?> <td><?php echo "Appartement n°".$num_appart['Id_Appartement']; 
+   					?> <td><?php echo "Appartement n°".$num_appart['Id_Appartement']."</br>"; 
                   $_SESSION['idappartement']= $num_appart['Id_Appartement']; 	
                    ?>  <a href="page_creation_piece.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Ajouter une piece</a> <?php
    						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
@@ -74,8 +74,8 @@ session_start();
    				$reqtype_piece->execute(array($num_appart['Id_Appartement'],$pieceinfo["Id_Piece"])); 
    				$type_piece_info=$reqtype_piece->fetch(); 
    				?><td><?php echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"."</br>"; 
-                  
-   	  			  ?>
+                  $_SESSION['idpiece']= $pieceinfo['Id_Piece'];
+                  ?>  <a href="page_creation_appareil.php?idpiece=<?php echo $_SESSION['idpiece'];?>">Ajouter un appareil</a> 
                
 
                  </td><?php
@@ -127,7 +127,7 @@ session_start();
                   ?>
 
    				    </br>
-   					<a href="<?php echo $infovideo['Lien']; ?>"> video</a> <?php
+   					<a href="<?php echo $infovideo['Lien']; ?>"target="_blank">video</a> <?php
    					
    					?><td> <?php 
 					echo "Conso :  "."</br>"; 
