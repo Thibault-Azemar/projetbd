@@ -23,6 +23,7 @@ session_start();
 				$insertsub->execute(array($libellesub, $descsub, $valeurmin, $valeurmax, $valeurcrit, $valeuride));
 				
 				$erreur = "Votre substance à bien été ajoutée";
+				header("Location: page_creation_appareil.php?id=".$_SESSION['id']);
 			}
 			else
 			{
@@ -55,6 +56,7 @@ session_start();
 				$insertres->execute(array($libelleres, $descres, $valeurminres, $valeurmaxres, $valeurcritres, $valeurideres));
 				
 				$erreur = "Votre ressource à bien été ajoutée";
+				header("Location: page_creation_appareil.php?id=".$_SESSION['id']);
 			}
 			else
 			{

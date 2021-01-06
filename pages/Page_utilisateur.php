@@ -59,7 +59,9 @@ session_start();
    	{
    					while ($num_appart = $reqappart->fetch())
    		{   
-   					?> <td><?php echo "Appartement n°".$num_appart['Id_Appartement']; 	
+   					?> <td><?php echo "Appartement n°".$num_appart['Id_Appartement']; 
+                  $_SESSION['idappartement']= $num_appart['Id_Appartement']; 	
+                   ?>  <a href="page_creation_piece.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Ajouter une piece</a> <?php
    						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
 						$reqpiece->execute(array($num_appart['Id_Appartement']));   
    						?>
@@ -71,8 +73,12 @@ session_start();
    				$reqtype_piece=$BDD->prepare("SELECT nom_type from type_piece LEFT JOIN piece ON type_piece.Id_Type_piece = piece.Id_Type_piece WHERE Id_Appartement = ? AND piece.Id_Piece= ? "); 
    				$reqtype_piece->execute(array($num_appart['Id_Appartement'],$pieceinfo["Id_Piece"])); 
    				$type_piece_info=$reqtype_piece->fetch(); 
-   				?><td><?php echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"; 
-   				?></td><?php
+   				?><td><?php echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"."</br>"; 
+                  
+   	  			  ?>
+               
+
+                 </td><?php
    						 
    				$reqappareil=$BDD->prepare("SELECT * FROM appareil LEFT JOIN appartient_piece ON appareil.Id_Appareil=appartient_piece.Id_Appareil WHERE appartient_piece.Id_Piece=?"); 
    				$reqappareil->execute(array($pieceinfo['Id_Piece'])); 
