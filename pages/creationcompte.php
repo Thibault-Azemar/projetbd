@@ -90,7 +90,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<font color="#000000">
+	<div class="menu" align="center">
+			<ul>
+				<li><a href="../main.php">ACCUEIL</a></li>
+				<li class="menude">Test
+				<div class="sousmenu">
+					<a href="">Test</a>
+						</div>
+					</li>						
+					<li><a href="a_propos.php">A PROPOS</a></li>
+					<li><a href="mailto:Les Imposteurs?">CONTACT</a></li>
+				</ul>	
+		</div>
 	<div class="Inscription" align="center">
 		<h1>Page Inscription </h1>
 		<form method="POST" action="">
@@ -186,6 +197,9 @@
 			echo '<font color="red">'.$erreur."</font>"; 
 		}
  	?>
+ 	<footer>
+		<p>&copy; 2020 - Les Imposteurs</p>
+	</footer>
 
 </body>
 </html>
