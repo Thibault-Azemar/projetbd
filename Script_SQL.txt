@@ -205,3 +205,5 @@ CREATE TABLE nb_piece(
    FOREIGN KEY(Id_type_appart) REFERENCES Type_appart(Id_type_appart),
    FOREIGN KEY(Id_Type_piece) REFERENCES Type_piece(Id_Type_piece)
 );
+
+CREATE TRIGGER `suppression` AFTER DELETE ON `personne` FOR EACH ROW IF NOT EXISTS ( SELECT compte.Id_Personne FROM compte LEFT JOIN personne ON compte.Id_Personne=personne.Id_Personne WHERE personne.Id_Personne=old.Id_Personne ) THEN DELETE FROM compte WHERE compte.Id_Personne=old.Id_Personne; UPDATE appartement SET date_fin =CURRENT_DATE WHERE appartement.Id_Personne=old.Id_Personne; END IF 
