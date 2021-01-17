@@ -111,6 +111,21 @@
 	  <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<header>
+			<ul>
+				<li><a href="editionprofil.php">Editer mon profil</a></li>
+				<?php
+				if(isset($_SESSION['id'])) {
+				?>
+				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+				<?php
+				}
+				?>
+				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="page_anonyme.php">Graphiques</a></li>
+				<li><a href="deconnexion.php">Se déconnecter</a></li>
+			</ul>
+		</header>
 		<div align="center">
 			<h1>Création maison</h1>
 			</br></br>
@@ -211,7 +226,6 @@
 						<td colspan="2" align="center">
 							<input type="submit" id="boutton_maison" name="boutton_maison" value="J'inscris ma maison" />
 						</br>
-							<a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a>
 						</td>
 					</tr>
 				</table>
