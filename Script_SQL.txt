@@ -1,6 +1,5 @@
 CREATE TABLE Personne(
    Id_Personne INT AUTO_INCREMENT,
-   email VARCHAR(50),
    date_naissance DATE,
    nom VARCHAR(40),
    genre VARCHAR(40),
