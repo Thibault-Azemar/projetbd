@@ -73,7 +73,7 @@ session_start();
 						$insertemet->execute(array($idappareil['Id_Appareil'], $idsubstance['Id_Substances'], $emission));
 						
 						$insertconso = $BDD->prepare("INSERT INTO consomme(Id_Appareil, Id_Ressources, Consommation_par_h) VALUES(?, ?, ?)");
-						$insertconso->execute(array($idappareil['Id_Appareil'], $idressource['Id_Ressources'], $emission));
+						$insertconso->execute(array($idappareil['Id_Appareil'], $idressource['Id_Ressources'], $conso));
 						
 						$insertpiece = $BDD->prepare("INSERT INTO appartient_piece(Id_Piece, Id_Appareil) VALUES(?, ?)");
 						$insertpiece->execute(array($idpiece['idpiece'] ,$idappareil['Id_Appareil']));
