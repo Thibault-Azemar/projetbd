@@ -92,7 +92,7 @@
 <body>
 	<header>
 		<ul>
-			<li><a href="pages/page_anonyme.php">Graphiques</a></li>
+			<li><a href="page_anonyme.php">Graphiques</a></li>
 			<li><a href="../main.php">Acceuil</a></li>			
 		</ul>
 	</header>
