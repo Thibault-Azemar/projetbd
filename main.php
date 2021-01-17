@@ -21,7 +21,20 @@ session_start();
          			header("Location: pages/Page_utilisateur.php?id=".$_SESSION['id']);
 				}
 				else{
-					$erreur="Mauvais identifiant ou mot de passe"; 
+					$requser2=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ? AND motdepasse = ?"); 
+					$requser2->execute(array($Identifiant_Connex , $Mdp_modif));
+					$userexist2=$requser2->rowCount();
+					if($userexist2==1)
+					{
+						$userinfo2 = $requser2->fetch();
+						$_SESSION['id'] = $userinfo2['Id_Compte'];
+						$_SESSION['email'] = $userinfo2['email'];
+						header("Location: pages/Page_utilisateur.php?id=".$_SESSION['id']);
+					}
+					else
+					{
+						$erreur="Mauvais identifiant ou mot de passe";
+					}
 				}
 			}
 			else
@@ -49,7 +62,7 @@ session_start();
 		<form method="POST" action="">
 			<label for="formulaire_connexion">
 			Identifiant:</label>
-			<input type="email"  id="Identifiant_Connex" name="Identifiant_Connex" />
+			<input type="text"  id="Identifiant_Connex" name="Identifiant_Connex" />
 		</br></br>
 			<label for="formulaire_connexion">
 			Mot de passe:</label>
