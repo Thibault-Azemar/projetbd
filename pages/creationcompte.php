@@ -90,18 +90,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="menu" align="center">
-			<ul>
-				<li><a href="../main.php">ACCUEIL</a></li>
-				<li class="menude">Test
-				<div class="sousmenu">
-					<a href="">Test</a>
-						</div>
-					</li>						
-					<li><a href="a_propos.php">A PROPOS</a></li>
-					<li><a href="mailto:Les Imposteurs?">CONTACT</a></li>
-				</ul>	
-		</div>
+	<header>
+		<ul>
+			<li><a href="pages/page_anonyme.php">Graphiques</a></li>
+			<li><a href="../main.php">Acceuil</a></li>			
+		</ul>
+	</header>
 	<div class="Inscription" align="center">
 		<h1>Page Inscription </h1>
 		<form method="POST" action="">
@@ -188,7 +182,6 @@
 					</table>
 				</label>
 			</form>
-			<a href="../main.php"><font color="#0000FF">Acceuil</a>
 		</div>
 	<?php 
 		

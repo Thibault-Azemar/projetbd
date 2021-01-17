@@ -51,11 +51,14 @@ session_start();
   <link rel="stylesheet" href="pages/style.css">
 </head>
 <body>
+	<header>
+			<ul>
+				<li><a href="pages/page_anonyme.php">Graphiques</a></li>
+				<li><a href="pages/creationcompte.php">Vous ne possèdez aucun compte ?</a></li>
+				
+			</ul>
+		</header>
 	<h1>Page D'Accueil </h1>
-	<div align="right" class="Page_anonyme">
-		 <a href="pages/page_anonyme.php"><font color="#0000FF">Page anonyme | </a>
-		 	<a href="pages/Page_Administrateur.php"><font color="#0000FF">Administrateur</a>
-	</div>
 	<font color="#000000">
 	<div class="Connexion">
 		<h2>Connexion</h2>
@@ -78,9 +81,6 @@ session_start();
 			echo '<font color="red">'.$erreur."</font>"; 
 		}
  ?>
-	<div class="Création de Compte">
-		<a href="pages/creationcompte.php"><font color="#0000FF">Vous ne possèdez aucun compte ?</a>
-	</div>
 
 </body>
 </html>
