@@ -24,7 +24,6 @@ session_start();
 		<header>
 			<ul>
 				<li><a href="editionprofil.php">Editer mon profil</a></li>
-				<li><a href="deconnexion.php">Se déconnecter</a></li>
 				<?php
 				if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
 				?>
@@ -32,6 +31,8 @@ session_start();
 				<?php
 				}
 				?>
+				<li><a href="page_anonyme.php">Graphiques</a></li>
+				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
 		</header>
       <div align="center">
