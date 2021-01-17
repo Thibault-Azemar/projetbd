@@ -16,6 +16,12 @@
 	src: url('../typo/Vogue.ttf');
 }
 
+h2
+{
+	font-family: Champagne;
+	background-color: grey;
+}
+
 html 
 {
 	height:100%;
@@ -40,6 +46,25 @@ table
 
 .menu {
 	background-color: brown;
+}
+
+header ul {
+	text-align: center;
+	position: relative;
+	background: #f2f2f2;
+	font-family: Bebas;
+}
+	
+header li {
+	display: inline-block;
+	margin: 10px 60px;
+	font-size: 25px;;
+	color: #4c6168;
+}
+
+li a{
+	color: #4c6168;
+	text-decoration: none;
 }
 
 footer {
