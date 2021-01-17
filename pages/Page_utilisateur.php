@@ -99,15 +99,16 @@ session_start();
             		
             <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
                   <input type="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
-                  <form>   
-                  <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id'];?>" method="post">
+                  </form>   
+                  <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
                   <input type="submit" id="Arreter" name="Arreter" value="Arreter">
-                  <form>   
+                  </form>   
                   </div>
 
                   <?php 
                   $NouveauD="Demarrer".$appareilinfo['Id_Appareil'];
                      if(!empty($_POST['Demarrer'])) {
+                        if($_GET['idappareil']==$appareilinfo['Id_Appareil']){
                         $date_depart = new DateTime();
                         $date_depart = $date_depart->format('Y-m-d H:i:s');
                         echo "Date de Démarrage : ".$date_depart;
@@ -115,18 +116,21 @@ session_start();
                         $insertintodureeconso = $BDD->prepare("INSERT INTO duree_de_conso(Id_Appareil, date_debut, date_fin) VALUES (?, ?, ?)");
                         $insertintodureeconso->execute(array($appareilinfo['Id_Appareil'], $date_depart, $date_depart));
                      }
+                  }
                   ?>
 
 
 
                   <?php
                      if(!empty($_POST['Arreter'])) {
+                        if($_GET['idappareil']==$appareilinfo['Id_Appareil']){
                         $date_fin = new DateTime();
                         $date_fin = $date_fin->format('Y-m-d H:i:s');
                         echo "Date d'arrêt : ".$date_fin;
                         $insertintodureeconso=$BDD->prepare("UPDATE duree_de_conso SET date_fin=? WHERE Id_Appareil=? AND date_debut = date_fin");
                         $insertintodureeconso->execute(array($date_fin, $appareilinfo['Id_Appareil']));
                      }
+                  }
                   ?>
 
    				    </br>
