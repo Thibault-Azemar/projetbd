@@ -40,7 +40,13 @@ div
 table
 {
 	background-color: white;
-
+	border-collapse : collapse;
+	
+}
+th,td /* Toutes les cellules des tableaux... */
+{
+    border: 1px solid black; /* auront une bordure de 1px */
+    text-align : center;
 }
 
 
