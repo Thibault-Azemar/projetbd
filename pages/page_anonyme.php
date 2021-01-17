@@ -32,6 +32,20 @@ session_start();
   <script src="package/dist/Chart.bundle.js"></script>
 </head>
 <body>
+	<header>
+			<ul>
+				<li><a href="editionprofil.php">Editer mon profil</a></li>
+				<?php
+				if(isset($_SESSION['id'])) {
+				?>
+				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+				<?php
+				}
+				?>
+				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="deconnexion.php">Se déconnecter</a></li>
+			</ul>
+		</header>
 	Ceci est une page anonyme 
 	<canvas id="nbgenre"> </canvas>
 

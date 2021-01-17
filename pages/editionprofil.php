@@ -44,8 +44,23 @@ if(isset($_SESSION['id'])) {
    <head>
       <title>Projet BDD</title>
       <meta charset="utf-8">
+	  <link rel="stylesheet" href="style.css">
    </head>
    <body>
+		<header>
+			<ul>
+				<?php
+				if(isset($_SESSION['id'])) {
+				?>
+				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+				<?php
+				}
+				?>
+				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="page_anonyme.php">Graphiques</a></li>
+				<li><a href="deconnexion.php">Se déconnecter</a></li>
+			</ul>
+		</header>
       <div align="center">
          <h2>Edition de mon profil</h2>
          <div align="left">
