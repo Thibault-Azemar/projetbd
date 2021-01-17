@@ -18,8 +18,22 @@ session_start();
    <head>
       <title>Projet BDD</title>
       <meta charset="utf-8">
+	  <link rel="stylesheet" href="style.css">
    </head>
    <body>
+		<header>
+			<ul>
+				<li><a href="editionprofil.php">Editer mon profil</a></li>
+				<li><a href="deconnexion.php">Se déconnecter</a></li>
+				<?php
+				if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
+				?>
+				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+				<?php
+				}
+				?>
+			</ul>
+		</header>
       <div align="center">
          <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; </h2>
 
@@ -27,7 +41,6 @@ session_start();
          </br>
          	<a href="page_creation_appart">Ajouter un appartement</a>
          	 </br>
-         		<a href="page_creation_appareil">Ajouter un appareil</a>
          	</font>
 
          <br /><br />
@@ -161,17 +174,8 @@ session_start();
  ?> </tr> <?php }
    			?>
    		</td></td></TABLE>
-         <?php
-         if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
-         ?>
          <br />
-         <a href="editionprofil.php">Editer mon profil</a>
-         <a href="deconnexion.php">Se déconnecter</a>
-         <a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a>
 
-         <?php
-         }
-         ?>
        </div>
    </body>
 </html>
