@@ -133,7 +133,7 @@
 									<option>Homme </option>
 									<option>Femme</option>
 									<option>Autre</option>
-									<option selected="yes">Non précisé</option>
+									<option selected="yes">Non precise</option>
 								</select>
 							</td>
 						</tr>
