@@ -55,16 +55,16 @@
 		
 		if (isset($_POST['Bouton_Suppr']))
 		{
-			$Identifiant_compte=$_POST['Identifiant_compte'];
-			if(!empty($Identifiant_compte))
+			$Id_supprimer=$_POST['supprimer'];
+			if(!empty($Id_supprimer))
 			{
-				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
-				$requser->execute(array($COMPTE));
+				$requser=$BDD->prepare("SELECT * FROM personne WHERE Id_Personne = ?"); 
+				$requser->execute(array($Id_supprimer));
 				$userexist=$requser->rowCount(); 
 				if($userexist ==1)
 				{
-					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 0 WHERE Id_Compte  = ?");
-					$reqadmin->execute(array($ACOMPTE));
+					$reqadmin=$BDD->prepare("DELETE FROM personne WHERE Id_personne = ?");
+					$reqadmin->execute(array($Id_supprimer));
 				}
 				else
 				{

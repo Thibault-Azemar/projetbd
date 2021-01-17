@@ -207,8 +207,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td align="center">
+						
+						<td colspan="2" align="center">
 							<input type="submit" id="boutton_maison" name="boutton_maison" value="J'inscris ma maison" />
 						</br>
 							<a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a>
