@@ -2,6 +2,80 @@
   session_start();  
 		
 	$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
+
+		if (isset($_POST['Bouton_Admin']))
+		{
+			$COMPTE=$_POST['COMPTE'];
+			if(!empty($COMPTE))
+			{
+				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
+				$requser->execute(array($COMPTE));
+				$userexist=$requser->rowCount(); 
+				if($userexist == 1 )
+				{
+					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 1 WHERE Id_Compte  = ?");
+					$reqadmin->execute(array($COMPTE));
+				}
+				else
+				{
+					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
+				}
+			}
+			else
+			{
+				$erreur = "Veuillez rentrer un identifiant de compte";
+			}
+		}
+
+
+		if (isset($_POST['Bouton_Non_Admin']))
+		{
+			$ACOMPTE=$_POST['ACOMPTE'];
+			if(!empty($ACOMPTE))
+			{
+				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
+				$requser->execute(array($ACOMPTE));
+				$userexist=$requser->rowCount(); 
+				if($userexist ==1)
+				{
+					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 0 WHERE Id_Compte  = ?");
+					$reqadmin->execute(array($ACOMPTE));
+				}
+				else
+				{
+					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
+				}
+			}
+			else
+			{
+				$erreur = "Veuillez rentrer un identifiant de compte";
+			}
+		}
+
+		
+		if (isset($_POST['Bouton_Suppr']))
+		{
+			$Identifiant_compte=$_POST['Identifiant_compte'];
+			if(!empty($Identifiant_compte))
+			{
+				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
+				$requser->execute(array($COMPTE));
+				$userexist=$requser->rowCount(); 
+				if($userexist ==1)
+				{
+					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 0 WHERE Id_Compte  = ?");
+					$reqadmin->execute(array($ACOMPTE));
+				}
+				else
+				{
+					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
+				}
+			}
+			else
+			{
+				$erreur = "Veuillez rentrer un identifiant de compte";
+			}
+		}
 ?>
 <html>
     <head>
@@ -52,99 +126,29 @@
 		</table>
 
 
-		<?php 
-		if (isset($_POST['Bouton_Admin']))
-		{
-			$COMPTE=$_POST['COMPTE'];
-			if(!empty($COMPTE))
-			{
-				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
-				$requser->execute(array($COMPTE));
-				$userexist=$requser->rowCount(); 
-				if($userexist ==1)
-				{
-					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 1 WHERE Id_Compte  = ?");
-					$admin->execute(array($COMPTE));
-				}
-				else
-				{
-					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
-				}
-			}
-			else
-			{
-				$erreur = "Veuillez rentrer un identifiant de compte";
-			}
-		}
-
-
-		if (isset($_POST['Bouton_Non_Admin']))
-		{
-			$ACOMPTE=$_POST['ACOMPTE'];
-			if(!empty($ACOMPTE))
-			{
-				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
-				$requser->execute(array($ACOMPTE));
-				$userexist=$requser->rowCount(); 
-				if($userexist ==1)
-				{
-					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 0 WHERE Id_Compte  = ?");
-					$admin->execute(array($ACOMPTE));
-				}
-				else
-				{
-					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
-				}
-			}
-			else
-			{
-				$erreur = "Veuillez rentrer un identifiant de compte";
-			}
-		}
-
-		
-		if (isset($_POST['Bouton_Suppr']))
-		{
-			$Identifiant_compte=$_POST['Identifiant_compte'];
-			if(!empty($Identifiant_compte))
-			{
-				$requser=$BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?"); 
-				$requser->execute(array($COMPTE));
-				$userexist=$requser->rowCount(); 
-				if($userexist ==1)
-				{
-					$reqadmin=$BDD->prepare("UPDATE compte SET etat = 0 WHERE Id_Compte  = ?");
-					$admin->execute(array($ACOMPTE));
-				}
-				else
-				{
-					$erreur ="L'identifiant n'existe pas veuillez vérifier dans la liste";
-				}
-			}
-			else
-			{
-				$erreur = "Veuillez rentrer un identifiant de compte";
-			}
-		}
-		?>
 		</br>	
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à rendre administrateur : </label>
 			<input type="number" name="COMPTE" placeholder="id compte"/>
-			<input type="submit" id="Bouton_Admin" value="Rendre Administrateur"/></br>
+			<input type="submit" id="Bouton_Admin" name="Bouton_Admin" value="Rendre Administrateur"/></br>
 		</form>
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à enlever des administrateurs : </label>
 			<input type="number" name="ACOMPTE" placeholder="id compte"/>
-			<input type="submit" id="Bouton_Non_Admin" value="Enlever des Administrateurs"/></br>
+			<input type="submit" id="Bouton_Non_Admin" name="Bouton_Non_Admin" value="Enlever des Administrateurs"/></br>
 		</form>
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant de la personne à supprimer :</label>
 			<input type="number" name="supprimer" placeholder="id personne"/>
-			<input type="submit" id="Bouton_Suppr" value="Supprimer Utilisateur"/></br>
+			<input type="submit" id="Bouton_Suppr" name="Bouton_Suppr" value="Supprimer Utilisateur"/></br>
 		</form>
 
-
+		<?php 
+		if(isset($erreur))
+		{
+			echo '<font color="red">'.$erreur."</font>"; 
+		}
+		?>
 		
 
 
