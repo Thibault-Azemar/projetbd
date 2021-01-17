@@ -77,7 +77,7 @@
 							Degré d'isolation :</label>
 						</td>
 						<td>
-							<input type="number" min="0" max="10" placeholder="(0-10)" id="degre_secu" name="degre_secu" value="<?php if(isset($degre_secu)) { echo $degre_secu; }?>" />
+							<input type="number" min="0" max="10" placeholder="0(faible)-10(fort)" id="degre_secu" name="degre_secu" value="<?php if(isset($degre_secu)) { echo $degre_secu; }?>" />
 						</td>
 					</tr>
 					<tr>
