@@ -51,6 +51,7 @@ session_start();
 
 <script>
 var ctx = document.getElementById('nbgenre').getContext('2d');
+
 var nbgenre = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -88,6 +89,7 @@ var nbgenre = new Chart(ctx, {
     }
 });
 </script>
+</canvas>
 
 <canvas id="nbpersonne"> </canvas>
 

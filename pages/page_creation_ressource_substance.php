@@ -152,8 +152,8 @@ session_start();
 						</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td align="center">
+						
+						<td  colspan="2" align="center">
 							<input type="submit" id="boutton_substance" name="boutton_substance" value="J'ajoute une nouvelle substance" />
 						</td>
 					</tr>
@@ -218,8 +218,8 @@ session_start();
 						</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td align="center">
+						
+						<td  colspan="2" align="center">
 							<input type="submit" id="boutton_ressource" name="boutton_ressource" value="J'ajoute une nouvelle ressource" />
 						</td>
 					</tr>

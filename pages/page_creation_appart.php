@@ -149,8 +149,8 @@
 					</tr>
 					<!--boutton submit-->
 					<tr>
-						<td></td> 
-							<td>
+						
+							<td colspan="2" align="center">
 							</br></br>
 							<input type="submit" id="boutton_appart" name="boutton_appart" value="J'inscris mon appartement" />
 							</td>

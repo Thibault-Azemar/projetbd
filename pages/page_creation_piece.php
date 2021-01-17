@@ -93,8 +93,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td></td> 
-							<td>
+						 
+							<td  colspan="2" align="center">
 							</br></br>
 							<input type="submit" id="bouton_piece" name="bouton_piece" value="J'ajoute ma piece" />
 							</td>

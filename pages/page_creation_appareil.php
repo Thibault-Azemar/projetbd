@@ -203,8 +203,8 @@ session_start();
 						</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td align="center">
+						
+						<td  colspan="2" align="center">
 							<input type="submit" id="boutton_appareil" name="boutton_appareil" value="J'ajoute mon appareil" />
 						</td>
 					</tr>
