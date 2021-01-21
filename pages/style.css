@@ -28,13 +28,12 @@ html
 	scroll-behavior: smooth;
 	font-family: Champagne;
 	/*background-image: url("../images/test.jpeg");*/
-	background-color: grey;
+	background-color: #847474;
 }
 
 div
 {
 	background-size: 100%;
-	color : black;
 }
 
 table
