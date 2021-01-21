@@ -12,16 +12,25 @@ session_start();
 	
 	if(isset($_POST['boutton_appareil']))
 	{
+		$emmission = 0;
+		
 		$libelle = htmlspecialchars($_POST['libelle']);
 		$desc = htmlspecialchars($_POST['desc']);
 		$type_appareil = htmlspecialchars($_POST['type_appareil']);
 		$conso = htmlspecialchars($_POST['conso']);
-		$emission = htmlspecialchars($_POST['emission']);
-		$ressource = htmlspecialchars($_POST['ressource']);
+		if(!empty($_POST['emmission']))
+		{
+			$emission = htmlspecialchars($_POST['emission']);
+		}
+		
 		$substance = htmlspecialchars($_POST['substance']);
+		
+			
+		$ressource = htmlspecialchars($_POST['ressource']);
+			
 		$lien = htmlspecialchars($_POST['lien']);
 		
-		if(!empty($_POST['libelle']) AND !empty($_POST['desc']) AND !empty($_POST['type_appareil']) AND !empty($_POST['conso']) AND !empty($_POST['emission']) AND !empty($_POST['ressource']) AND !empty($_POST['substance']) AND !empty($_POST['lien']))
+		if(!empty($_POST['libelle']) AND !empty($_POST['desc']) AND !empty($_POST['type_appareil']) AND !empty($_POST['conso']) AND !empty($_POST['ressource']))
 		{
 			
 			$desclength = strlen($desc);
