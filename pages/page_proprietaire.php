@@ -9,6 +9,7 @@
    	$reqmaison->execute(array($idpersonne));
 
 
+
 ?>
 <html>
     <head>
@@ -25,7 +26,7 @@
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
 		</header>
-    	Bonjour Cher(e) propriétaire. 
+    	Bonjour cher(e) propriétaire. 
     	<br/>
 
     	<table>
@@ -46,30 +47,37 @@
       			<tr>
       			<td>
       				<?php
-      				echo "Maison n°".$maison['Id_Maison']." ".$maison['Num_rue']." ".$maison['Rue']." ".$ville['Nom']; 
+      				$reqville=$BDD->prepare("SELECT ville.Nom FROM ville RIGHT JOIN maison ON ville.Id_Ville=maison.Id_Ville WHERE maison.Id_Ville= ? "); 
+
+        			$reqville->execute(array($maison['Id_Ville'])); 
+        			$ville=$reqville->fetch(); 
+      				echo "Maison n°".$maison['Id_Maison']." ".$maison['Num_rue']." ".$maison['Rue']." </br>".$ville['Nom']; 
 
       				//afficher les infos de la maison
-
-      				$reqhabitant = $BDD->prepare("SELECT * FROM appartement WHERE appartement.Id_Maison = ?");
-   					$reqhabitant->execute(array($maison['Id_Maison']));
-   					$habitant= $reqhabitant->fetch()
-
-   					$reqpersonne = $BDD->prepare("SELECT * FROM personne WHERE personne.Id_Personne = ?");
-   					$reqpersonne->execute(array($habitant['Id_Personne']));
+      				
+   					$reqpersonne = $BDD->prepare("SELECT personne.Id_Personne, personne.nom, personne.prenom, personne.num_tel FROM appartement RIGHT JOIN personne ON appartement.Id_Personne=personne.Id_Personne WHERE  appartement.Id_Maison = ?");
+   					$reqpersonne->execute(array($maison['Id_Maison'] ));
       				?>
+      				
       			</td> 
+      			<td>
       				<?php
       				while ($personne= $reqpersonne->fetch())
       				{
       				?>
-      					<td>
-      						<?php 
-      						echo "Nom : ".$personne['nom']." Prenom : ".$personne['prenom']."</br> Numéro de tel : ".$personne['num_tel'];
+      					</br>
+      						<?php
+      						$reqmail = $BDD->prepare("SELECT * FROM compte INNER JOIN personne ON compte.Id_Personne = personne.Id_Personne WHERE personne.Id_Personne = ?");
+      						$reqmail->execute(array($personne['Id_Personne']));
+      						$mail = $reqmail->fetch();
+
+      						echo " ".$personne['nom']." ".$personne['prenom']."</br> Numéro de tel : ".$personne['num_tel']."</br> Email : ".$mail['email'];
       						?>
-      					</td>
-      				<?php
+      					</br>
+      				<?php 
       				}
       				?>
+      			</td>
       			</tr>
 		<?php
       	}
