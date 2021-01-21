@@ -14,6 +14,8 @@
 
 
 
+réparé les boutons supprimé
+
 renommer page utilisateur en page locataire
 
 page utilisateur montrer conso appart (tableau de bord avec l'evolution journalière des valeurs)
