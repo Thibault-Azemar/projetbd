@@ -11,17 +11,17 @@
 -page_profil ok
 
 
-faire un lien vers page proprio
-faire un lien pour modifier chaque appart 
 
-mettre sur la page utilisateur si il est admin ou pas + rajouter l'affichage de l'id utilisateur + montrer conso appart (tableau de bord avec l'evolution journalière des valeurs)
+
+
+renommer page utilisateur en page locataire
+
+page utilisateur montrer conso appart (tableau de bord avec l'evolution journalière des valeurs)
+
 
 les requetes sql de la page admin + montrer les résultats
 
-entités: mettre a jour et supprimer (deja fait pour utilisateur et appart)
+entités: mettre a jour et supprimer (deja fait pour utilisateur et appart piece et appareil )
 
-changer sur la page utilisateur la manière d'afficher les maisons et appart, si un proprio crée une maison et un utilisateur crée un appart par dessus, l'utilisateur ne pourra pas voir son appartement
-on devrai rajouter quand meme les infos au niveau de la maison, genre adresse
 
-faire un truc pour créer les différents types de pièces puis dans création pièces faire un système pour affecter le bon type
-
+pouvoir mettre 0 en substance emise et ne pas etre obligé e remplir substance et video
