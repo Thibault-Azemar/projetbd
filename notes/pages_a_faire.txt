@@ -23,3 +23,5 @@ entités: mettre a jour et supprimer (deja fait pour utilisateur et appart)
 changer sur la page utilisateur la manière d'afficher les maisons et appart, si un proprio crée une maison et un utilisateur crée un appart par dessus, l'utilisateur ne pourra pas voir son appartement
 on devrai rajouter quand meme les infos au niveau de la maison, genre adresse
 
+faire un truc pour créer les différents types de pièces puis dans création pièces faire un système pour affecter le bon type
+
