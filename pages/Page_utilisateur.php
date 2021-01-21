@@ -37,7 +37,7 @@ session_start();
 			</ul>
 		</header>
       <div align="center">
-         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; </h2>
+         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>    <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  </h2>
 
          <a href="page_creation_maison.php"><font color="#0000FF">Ajouter une maison</a>
          </br>
