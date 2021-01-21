@@ -67,8 +67,8 @@ session_start();
          	
 
 
-			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE appartement.Id_Personne  = ? AND appartement.Id_Maison= ? ");
-   			$reqappart->execute(array($getid,$infomaison['Id_Maison'])); 
+			$reqappart = $BDD->prepare("SELECT * FROM appartement WHERE appartement.Id_Personne  = ? /*AND appartement.Id_Maison= ?*/ ");
+   			$reqappart->execute(array($getid/*,$infomaison['Id_Maison']*/)); 
    			
 
    	{
