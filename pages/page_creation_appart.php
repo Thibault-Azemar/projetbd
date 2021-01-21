@@ -76,6 +76,7 @@
 				}
 				?>
 				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
 				<li><a href="page_anonyme.php">Graphiques</a></li>
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
@@ -89,7 +90,7 @@
 					<tr>
 						<td align="right">
 							<label for="Degré de sécurité">
-							Degré d'isolation :</label>
+							Degré de sécurité :</label>
 						</td>
 						<td>
 							<input type="number" min="0" max="10" placeholder="0(faible)-10(fort)" id="degre_secu" name="degre_secu" value="<?php if(isset($degre_secu)) { echo $degre_secu; }?>" />

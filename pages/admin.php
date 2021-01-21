@@ -88,6 +88,7 @@
 			<ul>
 				<li><a href="editionprofil.php">Editer mon profil</a></li>
 				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
 				<li><a href="page_anonyme.php">Graphiques</a></li>
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>

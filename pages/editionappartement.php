@@ -38,8 +38,18 @@ if(isset($_SESSION['id']))
    <head>
       <title>Edition appartement </title>
       <meta charset="utf-8">
+      <link rel="stylesheet" href="style.css">
    </head>
    <body>
+      <header>
+         <ul>
+            <li><a href="editionprofil.php">Editer mon profil</a></li>
+            <li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+            <li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
+            <li><a href="page_anonyme.php">Graphiques</a></li>
+            <li><a href="deconnexion.php">Se déconnecter</a></li>
+         </ul>
+      </header>
       <div align="center">
          <h2>Edition de mon appartement</h2>
          <div align="left">
@@ -56,7 +66,7 @@ if(isset($_SESSION['id']))
                   <tr>
                      <td align="right">
                         <label for="Degré de sécurité">
-                        Changer le degré d'isolation :</label>
+                        Changer le degré de sécurité :</label>
                      </td>
                      <td>
                         <input type="number" min="0" max="10" placeholder="(0-10)" id="degre_secu" name="degre_secu" value="<?php if(isset($degre_secu)) { echo $degre_secu; }?>" />
@@ -73,7 +83,7 @@ if(isset($_SESSION['id']))
                </table>  
                <input type="submit" value="Mettre à jour mon appartement !" />
             </form>
-            <a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a>
+            
             <?php if(isset($msg)) { echo $msg; } ?>
          </div>
       </div>

@@ -31,6 +31,7 @@ session_start();
 				<?php
 				}
 				?>
+				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
 				<li><a href="page_anonyme.php">Graphiques</a></li>
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
@@ -80,6 +81,9 @@ session_start();
    						$reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
 						$reqpiece->execute(array($num_appart['Id_Appartement']));   
    						?>
+              <br/>
+              <br/>
+              <a href="editionappartement.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Modifier appartement</a></li>
    					</td>
    						<?php
    						 
