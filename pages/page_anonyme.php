@@ -119,12 +119,12 @@ var nbgenre = new Chart(ctx, {
     }
 });
 </script>
-<<<<<<< Updated upstream
+
 </canvas>
 
 =======
 <div id="container" style="width: 50%;">
->>>>>>> Stashed changes
+
 <canvas id="nbpersonne"> </canvas>
 </div>
 <script>
