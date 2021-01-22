@@ -112,7 +112,9 @@ session_start();
                      <br/>
                       <br/>
                     <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idpiece=".$pieceinfo['Id_Piece'];?>" method="post">
+
                      <input type="submit" class="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
+
                       </form>   
                   
 
@@ -206,6 +208,7 @@ session_start();
 
                         <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
                         <input type="submit" class="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+
                          </form>   
 
                         <?php 
@@ -250,7 +253,7 @@ session_start();
    					            $reqressources->execute(array($infoconso['Id_Ressources'])); 
    							        $ressourcesinfo=$reqressources->fetch(); 
    							
-   							        echo $infoconso["Consommation_par_h"]." ".$ressourcesinfo['description']."</br>";
+   							        echo $ressourcesinfo['libele']." : ".$infoconso["Consommation_par_h"]." ".$ressourcesinfo['description']."</br>";
    							   
    				             } 
                        echo "------"."</br>";
@@ -261,7 +264,7 @@ session_start();
    						           $reqsubstances->execute(array($infoemission['Id_Substances'])); 
    						           $infosubstances=$reqsubstances->fetch(); 
    						
-   						           echo $infoemission['Emmission_par_h']." ".$infosubstances['description']; 
+   						           echo $infosubstances['libele']." : ".$infoemission['Emmission_par_h']." ".$infosubstances['description']; 
    					          }
    				       }?><!--</tr>--><!--<td></td>--> <?php 
 			           ?> <!--<td>--> <?php } ?> <?php
