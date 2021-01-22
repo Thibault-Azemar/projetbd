@@ -53,11 +53,10 @@
       <div align="center">
 
           <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; 
-            <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>    <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  
+            <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>  </br>  <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  
           </h2>
 
-          <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
-          </br>
+          
          	<a class="link" href="page_creation_appart">Ajouter un appartement</a>
          	</br>
          	
@@ -129,7 +128,7 @@
    				        ?>
                       <td>
                       <?php 
-                        echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"."</br>"; 
+                        echo $type_piece_info['nom_type']." "."(".$pieceinfo['libelle'].")"."</br>"; 
                         $_SESSION['idpiece']= $pieceinfo['Id_Piece'];
                       ?>  
                       <a class="link" href="page_creation_appareil.php?idpiece=<?php echo $_SESSION['idpiece'];?>">Ajouter un appareil</a> 

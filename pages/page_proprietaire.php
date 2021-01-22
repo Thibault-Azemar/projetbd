@@ -26,8 +26,11 @@
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
 		</header>
-    	Bonjour cher(e) propriétaire. 
-    	<br/>
+    <div align="center">
+    	<h2>Bonjour cher(e) propriétaire. </h2>
+      <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
+          </br>
+          </br>
 
     	<table>
 
@@ -83,7 +86,7 @@
       	}
       	?>
 		</table>
-
+  </div>
 		</br>	
 		
 		<?php 
