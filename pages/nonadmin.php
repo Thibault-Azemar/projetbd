@@ -22,7 +22,7 @@
     	Désolé votre compte n'est pas enregistré comme administrateur. <br/> Vous avez la possivilité de faire une demande à l'adresse mail suivante : <br/>
     	....@etu.univ-tours.com <br/>
 
-    	<a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a> 
+    	 
 
 
     </body>
