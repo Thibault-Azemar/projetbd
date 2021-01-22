@@ -42,11 +42,11 @@ h2
 table
 {
 	border-collapse : collapse ;
-	
+	border: medium solid #2f435e;
 }
 th,td,tr /* Toutes les cellules des tableaux... */
 {
-    border: 1px solid #201b22; /* auront une bordure de 1px */
+    border: 1px solid #44566c; /* auront une bordure de 1px */
     text-align : center;
 }
 
