@@ -147,24 +147,26 @@
 
                         if (!empty($_POST['SupprimerA']))
                         {
-                          $reqapp=$BDD->prepare("SELECT * FROM appartient_piece WHERE Id_Piece = ?");
-                          $reqapp->execute(array($pieceinfo['Id_Piece']));
-                          $appexist=$reqapp->rowCount();
-
-                          if($appexist==0)
+                          if($_GET['idpiece']==$pieceinfo['Id_Piece'])
                           {
-                            $reqsupp = $BDD->prepare("DELETE FROM piece WHERE Id_Piece = ?");
-                            $reqsupp->execute(array($pieceinfo['Id_Piece']));
+                            $reqapp=$BDD->prepare("SELECT * FROM appartient_piece WHERE Id_Piece = ?");
+                            $reqapp->execute(array($pieceinfo['Id_Piece']));
+                            $appexist=$reqapp->rowCount();
 
-                            $reqsupp2=$BDD->prepare("DELETE FROM appartient_piece WHERE Id_Piece = ?");
-                            $reqsupp2->execute(array($pieceinfo['Id_Piece']));
-                          }
-                          else
-                          {
-                            $erreur="la piece n'est pas vide";
-                            echo $erreur;
-                          }
+                            if($appexist==0)
+                            {
+                              $reqsupp = $BDD->prepare("DELETE FROM piece WHERE Id_Piece = ?");
+                              $reqsupp->execute(array($pieceinfo['Id_Piece']));
 
+                              $reqsupp2=$BDD->prepare("DELETE FROM appartient_piece WHERE Id_Piece = ?");
+                              $reqsupp2->execute(array($pieceinfo['Id_Piece']));
+                            }
+                            else
+                            {
+                              $erreur="la piece n'est pas vide";
+                              echo $erreur;
+                            }
+                          }
                         }
                    
                       ?>
@@ -226,11 +228,7 @@
                               $insertintodureeconso->execute(array($appareilinfo['Id_Appareil'], $date_depart, $date_depart));
                             }
                           }
-                      ?>
-
-
-
-                      <?php
+                      
                           if(!empty($_POST['Arreter'])) 
                           {
                             if($_GET['idappareil']==$appareilinfo['Id_Appareil'])
@@ -246,23 +244,26 @@
 
                           if (!empty($_POST['Supprimer']))
                           {
+                            if($_GET['idappareil']==$appareilinfo['Id_Appareil'])
+                            {
                         
-                            $reqsupp2=$BDD->prepare("DELETE FROM emet WHERE Id_Appareil = ?");
-                            $reqsupp2->execute(array($appareilinfo['Id_Appareil']));
+                              $reqsupp2=$BDD->prepare("DELETE FROM emet WHERE Id_Appareil = ?");
+                              $reqsupp2->execute(array($appareilinfo['Id_Appareil']));
 
-                            $reqsupp3=$BDD->prepare("DELETE FROM consomme WHERE Id_Appareil = ?");
-                            $reqsupp3->execute(array($appareilinfo['Id_Appareil']));
+                              $reqsupp3=$BDD->prepare("DELETE FROM consomme WHERE Id_Appareil = ?");
+                              $reqsupp3->execute(array($appareilinfo['Id_Appareil']));
 
-                            $reqsupp4=$BDD->prepare("DELETE FROM appartient_piece WHERE Id_Appareil = ?");
-                            $reqsupp4->execute(array($appareilinfo['Id_Appareil']));
+                              $reqsupp4=$BDD->prepare("DELETE FROM appartient_piece WHERE Id_Appareil = ?");
+                              $reqsupp4->execute(array($appareilinfo['Id_Appareil']));
 
-                            $reqsupp5=$BDD->prepare("DELETE FROM duree_de_conso WHERE Id_Appareil = ?");
-                            $reqsupp5->execute(array($appareilinfo['Id_Appareil']));
+                              $reqsupp5=$BDD->prepare("DELETE FROM duree_de_conso WHERE Id_Appareil = ?");
+                              $reqsupp5->execute(array($appareilinfo['Id_Appareil']));
 
-                            $reqsupp = $BDD->prepare("DELETE FROM appareil WHERE Id_Appareil = ?");
-                            $reqsupp->execute(array($appareilinfo['Id_Appareil']));
+                              $reqsupp = $BDD->prepare("DELETE FROM appareil WHERE Id_Appareil = ?");
+                              $reqsupp->execute(array($appareilinfo['Id_Appareil']));
                           
-                            header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
+                              header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
+                            }
 
                           
                           }
