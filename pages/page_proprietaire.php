@@ -3,10 +3,18 @@
 		
 	$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
 
-	$idpersonne = $_SESSION['id'];
+	$getid = $_SESSION['id'];
+  if(isset($_SESSION['id']) AND   $getid > 0)
+  {
+    $reqcompte = $BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?");
+    $reqcompte->execute(array($getid));
+    $compteinfo = $reqcompte->fetch();
+    $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
+    $reqpersonne->execute(array($getid));
+    $personneinfo = $reqpersonne->fetch();
 
 	$reqmaison = $BDD->prepare("SELECT * FROM maison WHERE maison.Id_Personne  = ? ");
-   	$reqmaison->execute(array($idpersonne));
+   	$reqmaison->execute(array($getid));
 
 
 
@@ -27,7 +35,7 @@
 			</ul>
 		</header>
     <div align="center">
-    	<h2>Bonjour cher(e) propriétaire. </h2>
+    	<h2>Bonjour <?php echo $personneinfo['prenom']?> </h2>
       <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
           </br>
           </br>
@@ -105,6 +113,8 @@
 			- supprimer les personnes
 			- rendre compte administrateur
 -->
-
+<?php
+  }
+?>
 
 </html>
