@@ -70,6 +70,50 @@
    					$reqpersonne->execute(array($maison['Id_Maison'] ));
       				?>
       				
+      				<!--	
+
+						<form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idmaison=".$maisoninfo['Id_Maison'];?>" method="post">
+
+                        <input type="submit" class="submitdel" id="SupprimerA" name="SupprimerA" value="Supprimer">
+
+                      </form>   
+                  
+
+                      <?php 
+                      	$reqmaison=$BDD->prepare("SELECT * FROM maison WHERE Id_Personne=?"); 
+              			$reqmaison->execute(array($getid)); 
+             			$infomaison=$reqmaison->fetch();
+
+                        if (!empty($_POST['SupprimerA']))
+                        {
+                          if($_GET['idmaison']==$maisoninfo['Id_Maison'])
+                          {
+                            $reqapp=$BDD->prepare("SELECT * FROM appartement WHERE Id_Maison = ?");
+                            $reqapp->execute(array($maisoninfo['Id_Maison']));
+                            $appexist=$reqapp->rowCount();
+
+                            if($appexist==0)
+                            {
+                              $reqsupp = $BDD->prepare("DELETE FROM maison WHERE Id_Maison = ?");
+                              $reqsupp->execute(array($maisoninfo['Id_Maison']));
+
+                             
+                            }
+                            else
+                            {
+                              $erreur="la maison n'est pas vide";
+                              echo $erreur;
+                            }
+                          }
+                        }
+                   
+                      ?>
+
+
+					-->
+
+
+
       			</td> 
       			<td>
       				<?php
