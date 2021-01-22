@@ -37,8 +37,6 @@ session_start();
   			}
 		}
 
-
-
 		?>
 <html lang="fr">
 <head>
@@ -167,6 +165,49 @@ var nbpersonne = new Chart(ctx, {
 });
 </script>
 
+
+<?php 
+  $reqressource=$BDD->query('SELECT * FROM ressources'); 
+    while($inforessources=$reqressource->fetch()){
+      $conso_totale_elevee=0; 
+      $maison_gourmande; 
+    $reqmaison=$BDD->query('SELECT * FROM maison'); 
+    while($infomaison=$reqmaison->fetch()){
+
+      $reqvue_appart=$BDD->prepare('CREATE VIEW vue_appartement AS SELECT Id_Appartement FROM appartement WHERE Id_Maison=?'); 
+      $reqvue_appart->execute(array($infomaison['Id_Maison'])); 
+      $reqvue_piece=$BDD->query('CREATE VIEW  vue_piece AS SELECT Id_Piece FROM piece WHERE Id_Appartement IN (SELECT * FROM vue_appartement)'); 
+      $reqvue_piece=$BDD->query('CREATE VIEW vue_appareil AS SELECT Id_Appareil FROM appartient_piece WHERE Id_Piece IN (SELECT * FROM vue_piece)');
+
+      $reqselec_appareil=$BDD->prepare('SELECT DISTINCT * FROM duree_de_conso d LEFT JOIN consomme c ON (d.Id_Appareil=c.Id_Appareil) WHERE d.date_fin LIKE "2021-01%" AND c.Id_Ressources=?  AND d.Id_Appareil IN (SELECT * FROM vue_appareil)'); 
+      $reqselec_appareil->execute(array($inforessources['Id_Ressources'])); 
+      $conso_tot_maison=0; 
+      while ($infoselect_appareil=$reqselec_appareil->fetch()){
+          $reqconsomme=$BDD->prepare('SELECT * FROM consomme WHERE Id_Appareil=?'); 
+          $reqconsomme->execute(array($infoselect_appareil['Id_Appareil'])); 
+          $infoconsomme=$reqconsomme->fetch(); 
+          $duree=date_diff(date_create($infoselect_appareil['date_fin']),date_create($infoselect_appareil['date_debut'])); 
+          $duree=$duree->format('%s'); 
+          $conso_tot_maison=$conso_tot_maison+$duree*$infoconsomme['Consommation_par_h']; 
+          echo $conso_tot_maison.'</br>'; 
+          if($conso_tot_maison > $conso_totale_elevee){
+            $conso_totale_elevee=$conso_tot_maison;
+            $maison_gourmande=$infomaison['Id_Maison']; 
+          
+      }
+          
+
+          $reqsuppvuepiece=$BDD->query('DROP VIEW vue_piece'); 
+          $reqsuppvueappart=$BDD->query('DROP WVIEW vue_appartement'); 
+          $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
+    }
+     
+            echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d identifiant'.$maison_gourmande.'</br>';
+            echo 'Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'];   
+          }
+  
+  }
+?>
 
 </body>
 </html>
