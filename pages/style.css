@@ -16,11 +16,6 @@
 	src: url('../typo/Vogue.ttf');
 }
 
-h2
-{
-	font-family: Champagne;
-	background-color: ;
-}
 
 html 
 {
@@ -36,21 +31,34 @@ div
 	background-size: 100%;
 }
 
+h2
+{
+	font-family: Champagne;
+	background-color: ;
+}
+
+
+
 table
 {
-	background-color: #ededed;
-	/*border-collapse : collapse;*/
+	border-collapse : collapse ;
 	
 }
-th,td /* Toutes les cellules des tableaux... */
+th,td,tr /* Toutes les cellules des tableaux... */
 {
-    border: 1px ; /* auront une bordure de 1px */
-    border-color: #201b22
+    border: 1px solid #201b22; /* auront une bordure de 1px */
     text-align : center;
 }
 
+.submit
+{
+	background-color: #44566c
+}
 
-.menu {
+
+.menu 
+{
+
 }
 
 header ul {
