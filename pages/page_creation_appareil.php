@@ -17,6 +17,18 @@ session_start();
 		$libelle = htmlspecialchars($_POST['libelle']);
 		$desc = htmlspecialchars($_POST['desc']);
 		$type_appareil = htmlspecialchars($_POST['type_appareil']);
+
+
+
+
+		$reqidtype=$BDD->prepare("SELECT Id_Type_appareil FROM type_appareil WHERE nom_appareil = ?");
+		$type=$reqidtype->execute(array($type_appareil));
+		
+
+
+
+
+
 		$conso = htmlspecialchars($_POST['conso']);
 		if(!empty($_POST['emmission']))
 		{
@@ -48,17 +60,17 @@ session_start();
 					if($substanceexist == 1)
 					{
 						$reqtypeappareil=$BDD->prepare("SELECT * FROM type_appareil WHERE Id_Type_appareil = ?"); 
-						$reqtypeappareil->execute(array($type_appareil));
+						$reqtypeappareil->execute(array($type));
 						$typeappareilexist=$reqtypeappareil->rowCount();
 						
 						if($typeappareilexist == 0 )
 						{
 							$inserttypeappareil = $BDD->prepare("INSERT INTO type_appareil(Id_Type_appareil) VALUES(?)");
-							$inserttypeappareil->execute(array($type_appareil));
+							$inserttypeappareil->execute(array($type));
 						}
 						
 						$insertappareil = $BDD->prepare("INSERT INTO appareil(description, libelle, Id_Type_appareil , conso_par_h, emission_par_h) VALUES(?, ?, ?, ?, ?)");
-						$insertappareil->execute(array($desc, $libelle, $type_appareil, $conso, $emission));
+						$insertappareil->execute(array($desc, $libelle, $type, $conso, $emission));
 						
 						$reqidappareil = $BDD->prepare("SELECT Id_Appareil FROM appareil WHERE description = ?");
 						$reqidappareil->execute(array($desc));
@@ -126,13 +138,14 @@ session_start();
 				if(isset($_SESSION['id'])) {
 				?>
 				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
-				<?php
-				}
-				?>
 				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
 				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
 				<li><a href="page_anonyme.php">Graphiques</a></li>
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
+				<?php
+				}
+				?>
+				
 			</ul>
 		</header>
 		<div align="center">
@@ -158,7 +171,7 @@ session_start();
 							<input type="text" placeholder="Description de la position de l'appareil" id="desc" name="desc" value="<?php if(isset($desc)) { echo $desc; }?>" />
 						</td>
 					</tr>
-					<tr>
+					<!--<tr>
 						<td align="right">
 							<label for="Type appareil">
 							Type appareil:</label>
@@ -166,6 +179,31 @@ session_start();
 						<td>
 							<input type="number" placeholder="Id du type d'appareil" id="type_appareil" name="type_appareil" value="<?php if(isset($type_appareil)) { echo $type_appareil; }?>" />
 						</td>
+					</tr>-->
+					<tr>
+						<td align="right">
+							<label for="Type appareil">
+							Type appareil:</label>
+						</td>
+						<td>
+							<?php
+								$reqtypes = "SELECT * FROM type_appareil";
+								$listeress=$BDD->query($reqtypes);
+							?>
+							<select name="type_appareil">
+								<?php 
+							
+									while($ligness=$listeress->fetch())
+									{
+								?>
+										<option><?php echo $ligness['nom_appareil'];?></option>
+								<?php
+									}
+								?>
+							</select>
+						</td>
+
+
 					</tr>
 					<tr>
 						<td align="right">
