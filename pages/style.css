@@ -55,6 +55,10 @@ th,td,tr /* Toutes les cellules des tableaux... */
 	background-color: #44566c;
 	border: none ;
 	color: #ececec ;
+	height: 22px;
+	width: 75px;
+	border-radius: 2px;
+
 }
 
 
