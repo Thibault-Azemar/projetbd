@@ -56,6 +56,7 @@ CREATE TABLE Substances(
 
 CREATE TABLE Type_appareil(
    Id_Type_appareil INT AUTO_INCREMENT,
+   nom_appareil VARCHAR(50),
    PRIMARY KEY(Id_Type_appareil)
 );
 
