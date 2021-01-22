@@ -19,7 +19,7 @@
 h2
 {
 	font-family: Champagne;
-	background-color: grey;
+	background-color: ;
 }
 
 html 
@@ -28,7 +28,7 @@ html
 	scroll-behavior: smooth;
 	font-family: Champagne;
 	/*background-image: url("../images/test.jpeg");*/
-	background-color: #847474;
+	background-color: #ececec;
 }
 
 div
@@ -38,42 +38,41 @@ div
 
 table
 {
-	background-color: white;
-	border-collapse : collapse;
+	background-color: #ededed;
+	/*border-collapse : collapse;*/
 	
 }
 th,td /* Toutes les cellules des tableaux... */
 {
-    border: 1px solid black; /* auront une bordure de 1px */
+    border: 1px ; /* auront une bordure de 1px */
+    border-color: #201b22
     text-align : center;
 }
 
 
 .menu {
-	background-color: brown;
 }
 
 header ul {
 	text-align: center;
 	position: relative;
-	background: #f2f2f2;
+	background: #2f435e;
 	font-family: Bebas;
 }
 	
 header li {
 	display: inline-block;
 	margin: 10px 60px;
-	font-size: 25px;;
-	color: #4c6168;
+	font-size: 25px;
 }
 
 li a{
-	color: #4c6168;
+	color:  #ececec;
 	text-decoration: none;
 }
 
 footer {
-		background: red;
+		background: #44566c;
 		text-align: center;
 		font-size: 18px;
 	 }
