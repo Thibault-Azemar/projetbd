@@ -55,44 +55,47 @@ th,td,tr /* Toutes les cellules des tableaux... */
 	background-color: #44566c;
 	border: none ;
 	color: #ececec ;
-	height: 22px;
-	width: 75px;
+	/*height: 22px;
+	width: 75px;*/
 	border-radius: 2px;
 
 }
 
-
-.menu 
+.link
 {
-
+	color: #201b22; /* 201b22   4b5e65  */
+	/*text-decoration: none; /* sous lignage */
+	
 }
 
-header ul {
+
+
+
+header ul 
+{
 	text-align: center;
 	position: relative;
 	background: #2f435e;
 	font-family: Bebas;
 }
 	
-header li {
+header li 
+{
 	display: inline-block;
 	margin: 10px 60px;
 	font-size: 25px;
 }
 
-li a{
+li a
+{
 	color:  #ececec;
 	text-decoration: none;
 }
 
-footer {
-		background: #44566c;
-		text-align: center;
-		font-size: 18px;
-	 }
-
-	 footer p{
-	 }
-
-	 footer a{
-	 }-
+footer 
+{
+	background: #44566c;
+	text-align: center;
+	font-size: 18px;
+	color:  #ececec;
+}
