@@ -22,7 +22,10 @@ session_start();
 
 
 		$reqidtype=$BDD->prepare("SELECT Id_Type_appareil FROM type_appareil WHERE nom_appareil = ?");
-		$type=$reqidtype->execute(array($type_appareil));
+		$reqidtype->execute(array($type_appareil));
+		$type=$reqidtype->fetch();
+		$reqidtype->closeCursor();
+		echo $type['Id_Type_appareil'];
 		
 
 
