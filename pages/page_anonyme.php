@@ -51,16 +51,27 @@ session_start();
 <body>
 	<header>
 			<ul>
-				<li><a href="editionprofil.php">Editer mon profil</a></li>
+				
 				<?php
 				if(isset($_SESSION['id'])) {
 				?>
+        <li><a href="editionprofil.php">Editer mon profil</a></li>
 				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+        <li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+        <li><a href="deconnexion.php">Se déconnecter</a></li>
 				<?php
 				}
+        else
+        {
+        ?>
+
+        <li><a href="../main.php">Se connecter</a></li>
+
+        <?php
+        }
 				?>
-				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
-				<li><a href="deconnexion.php">Se déconnecter</a></li>
+				
+				
 			</ul>
 		</header>
 	Ceci est une page anonyme 
