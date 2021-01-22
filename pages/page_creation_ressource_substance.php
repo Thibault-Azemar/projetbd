@@ -109,11 +109,11 @@ session_start();
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Description de la substance">
-							Description de la substance:</label>
+							<label for="Unité par heure de la substance">
+							Unité par heure de la substance:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Description de la sustance" id="descsub" name="descsub" value="<?php if(isset($descsub)) { echo $descsub; }?>" />
+							<input type="text" placeholder="Unité par heure de la sustance" id="descsub" name="descsub" value="<?php if(isset($descsub)) { echo $descsub; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -155,7 +155,7 @@ session_start();
 					<tr>
 						
 						<td  colspan="2" align="center">
-							<input type="submit" id="boutton_substance" name="boutton_substance" value="J'ajoute une nouvelle substance" />
+							<input class="submit" type="submit" id="boutton_substance" name="boutton_substance" value="J'ajoute une nouvelle substance" />
 						</td>
 					</tr>
 				</table>
@@ -175,11 +175,11 @@ session_start();
 					</tr>
 					<tr>
 						<td align="right">
-							<label for="Description de la ressource">
-							Description de la ressource:</label>
+							<label for="Unité par heure de la ressource">
+							Unité par heure de la ressource:</label>
 						</td>
 						<td>
-							<input type="text" placeholder="Description de la ressource" id="descres" name="descres" value="<?php if(isset($descres)) { echo $descres; }?>" />
+							<input type="text" placeholder="Unité par heure de la ressource" id="descres" name="descres" value="<?php if(isset($descres)) { echo $descres; }?>" />
 						</td>
 					</tr>
 					<tr>
@@ -221,7 +221,7 @@ session_start();
 					<tr>
 						
 						<td  colspan="2" align="center">
-							<input type="submit" id="boutton_ressource" name="boutton_ressource" value="J'ajoute une nouvelle ressource" />
+							<input class="submit" type="submit" id="boutton_ressource" name="boutton_ressource" value="J'ajoute une nouvelle ressource" />
 						</td>
 					</tr>
 				</table>
