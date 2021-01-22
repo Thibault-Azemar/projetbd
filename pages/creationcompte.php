@@ -176,7 +176,7 @@
 							 
 							<td colspan="2" align="center">
 								</br></br>
-							<input type="submit" id="boutton_creer" name="boutton_creer" value="Créer compte"/>
+							<input type="submit" class="submit" id="boutton_creer" name="boutton_creer" value="Créer compte"/>
 							</td>
 						</tr>
 					</table>

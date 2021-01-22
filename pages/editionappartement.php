@@ -81,7 +81,7 @@ if(isset($_SESSION['id']))
                      </td>
                   </tr>
                </table>  
-               <input type="submit" value="Mettre à jour mon appartement !" />
+               <input type="submit" class="submit" value="Mettre à jour mon appartement !" />
             </form>
             
             <?php if(isset($msg)) { echo $msg; } ?>

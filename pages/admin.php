@@ -138,18 +138,18 @@
 		</br>	
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à rendre administrateur : </label>
-			<input type="number" name="COMPTE" placeholder="id compte"/>
+			<input type="number" class="submit" name="COMPTE" placeholder="id compte"/>
 			<input type="submit" id="Bouton_Admin" name="Bouton_Admin" value="Rendre Administrateur"/></br>
 		</form>
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à enlever des administrateurs : </label>
 			<input type="number" name="ACOMPTE" placeholder="id compte"/>
-			<input type="submit" id="Bouton_Non_Admin" name="Bouton_Non_Admin" value="Enlever des Administrateurs"/></br>
+			<input type="submit" class="submit" id="Bouton_Non_Admin" name="Bouton_Non_Admin" value="Enlever des Administrateurs"/></br>
 		</form>
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant de la personne à supprimer :</label>
 			<input type="number" name="supprimer" placeholder="id personne"/>
-			<input type="submit" id="Bouton_Suppr" name="Bouton_Suppr" value="Supprimer Utilisateur"/></br>
+			<input type="submit" class="submit" id="Bouton_Suppr" name="Bouton_Suppr" value="Supprimer Utilisateur"/></br>
 		</form>
 
 		<?php 
