@@ -23,25 +23,25 @@ session_start();
    <body>
 		<header>
 			<ul>
-				<li><a href="editionprofil.php">Editer mon profil</a></li>
+				<li><a class="link" href="editionprofil.php">Editer mon profil</a></li>
 				<?php
 				if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
 				?>
-				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+				<li><a class="link" href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
 				<?php
 				}
 				?>
-				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
-				<li><a href="page_anonyme.php">Graphiques</a></li>
-				<li><a href="deconnexion.php">Se déconnecter</a></li>
+				<li><a class="link" href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
+				<li><a class="link" href="page_anonyme.php">Graphiques</a></li>
+				<li><a class="link" href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
 		</header>
       <div align="center">
          <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>    <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  </h2>
 
-         <a href="page_creation_maison.php"><font color="#0000FF">Ajouter une maison</a>
+         <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
          </br>
-         	<a href="page_creation_appart">Ajouter un appartement</a>
+         	<a class="link" href="page_creation_appart">Ajouter un appartement</a>
          	 </br>
          	</font>
 
@@ -87,13 +87,13 @@ session_start();
                    echo $infomaison['Num_rue']." ".$infomaison['Rue']." ".$infoville['Nom'];
                    ?>  
                    <br/>
-                   <a href="page_creation_piece.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Ajouter une piece</a> <?php
+                   <a class="link" href="page_creation_piece.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Ajouter une piece</a> <?php
    						     $reqpiece=$BDD->prepare("SELECT * FROM piece WHERE Id_Appartement = ?");
 						        $reqpiece->execute(array($num_appart['Id_Appartement']));   
    						     ?>
                   <br/>
                   <br/>
-                  <a href="editionappartement.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Modifier appartement</a></li>
+                  <a class="link" href="editionappartement.php?idappartement=<?php echo $_SESSION['idappartement'];?>">Modifier appartement</a></li>
    					      </td>
    						   <?php
    						 
@@ -104,16 +104,16 @@ session_start();
    				           $type_piece_info=$reqtype_piece->fetch(); 
    				           ?><td><?php echo $pieceinfo['libelle']." "."(".$type_piece_info['nom_type'].")"."</br>"; 
                       $_SESSION['idpiece']= $pieceinfo['Id_Piece'];
-                      ?>  <a href="page_creation_appareil.php?idpiece=<?php echo $_SESSION['idpiece'];?>">Ajouter un appareil</a> 
+                      ?>  <a class="link" href="page_creation_appareil.php?idpiece=<?php echo $_SESSION['idpiece'];?>">Ajouter un appareil</a> 
 
 
 
 
                      <br/>
                       <br/>
-                    <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idpiece=".$pieceinfo['Id_Piece'];?>" method="post">
+                      <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idpiece=".$pieceinfo['Id_Piece'];?>" method="post">
 
-                     <input type="submit" class="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
+                        <input type="submit" class="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
 
                       </form>   
                   
@@ -252,7 +252,7 @@ session_start();
                  
 
    				             </br>
-   					          <a href="<?php echo $infovideo['Lien']; ?>"target="_blank">video</a> <?php
+   					          <a class="link" href="<?php echo $infovideo['Lien']; ?>"target="_blank">video</a> <?php
    					
    					          ?><td> <?php 
 					             echo "Conso :  "."</br>"; 
