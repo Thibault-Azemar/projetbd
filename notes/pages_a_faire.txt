@@ -9,6 +9,7 @@
 -page_maison ok
 -page_piece ok
 -page_profil ok
+-tableau_de_bord
 
 
 
