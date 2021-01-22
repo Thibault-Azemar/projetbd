@@ -138,8 +138,8 @@
 		</br>	
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à rendre administrateur : </label>
-			<input type="number" class="submit" name="COMPTE" placeholder="id compte"/>
-			<input type="submit" id="Bouton_Admin" name="Bouton_Admin" value="Rendre Administrateur"/></br>
+			<input type="number" name="COMPTE" placeholder="id compte"/>
+			<input type="submit" class="submit" id="Bouton_Admin" name="Bouton_Admin" value="Rendre Administrateur"/></br>
 		</form>
 		<form method="POST" action="" enctype="multipart/form-data">
 			<label> Entrer l'identifiant du compte à enlever des administrateurs : </label>
