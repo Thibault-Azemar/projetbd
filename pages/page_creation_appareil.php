@@ -185,6 +185,7 @@ session_start();
 							<input type="number" placeholder="Emission" id="emission" name="emission" value="<?php if(isset($emission)) { echo $emission; }?>" />
 						</td>
 					</tr>
+					<!--
 					<tr>
 						<td align="right">
 							<label for="Ressource">
@@ -194,7 +195,36 @@ session_start();
 							<input type="text" placeholder="Ressource consommée" id="ressource" name="ressource" value="<?php if(isset($ressource)) { echo $ressource; }?>" />
 						</td>
 					</tr>
+					-->
 					<tr>
+						<td align="right">
+							<label for="Ressource">
+							Ressource:</label>
+						</td>
+						<td>
+							<?php
+								$reqressource = "SELECT * FROM ressources";
+								$listeres=$BDD->query($reqressource);
+							?>
+							<select name="ressource">
+								<?php 
+							
+									while($ligne=$listeres->fetch())
+									{
+								?>
+										<option><?php echo $ligne['libele'];?></option>
+								<?php
+									}
+								?>
+							</select>
+						</td>
+
+
+					</tr>
+
+
+
+					<!--<tr>
 						<td align="right">
 							<label for="Substance">
 							Substance:</label>
@@ -202,6 +232,31 @@ session_start();
 						<td>
 							<input type="text" placeholder="Null si jamais rien n'est émis" id="substance" name="substance" value="<?php if(isset($substance)) { echo $substance; }?>" />
 						</td>
+					</tr>-->
+					<tr>
+						<td align="right">
+							<label for="Substance">
+							Substance:</label>
+						</td>
+						<td>
+							<?php
+								$reqsubstance = "SELECT * FROM substances";
+								$listesub=$BDD->query($reqsubstance);
+							?>
+							<select name="substances">
+								<?php 
+							
+									while($lignes=$listesub->fetch())
+									{
+								?>
+										<option><?php echo $lignes['libele'];?></option>
+								<?php
+									}
+								?>
+							</select>
+						</td>
+
+
 					</tr>
 					<tr>
 						<td align="right">
