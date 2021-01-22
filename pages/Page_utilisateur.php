@@ -1,49 +1,67 @@
 <?php
-session_start();  
+  session_start();  
 		
-		$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
-				if(isset($_GET['id']) AND 	$_GET['id'] > 0) 
-				{
-   $getid = intval($_GET['id']);
-   $reqcompte = $BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?");
-   $reqcompte->execute(array($getid));
-   $compteinfo = $reqcompte->fetch();
-   $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
-   $reqpersonne->execute(array($getid));
-   $personneinfo = $reqpersonne->fetch();
+	$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
+			if(isset($_GET['id']) AND 	$_GET['id'] > 0) 
+			{
+        $getid = intval($_GET['id']);
+        $reqcompte = $BDD->prepare("SELECT * FROM compte WHERE Id_Compte = ?");
+        $reqcompte->execute(array($getid));
+        $compteinfo = $reqcompte->fetch();
+        $reqpersonne = $BDD->prepare('SELECT * FROM personne WHERE Id_Personne = ?');
+        $reqpersonne->execute(array($getid));
+        $personneinfo = $reqpersonne->fetch();
    
-
 ?>
 <html>
+
    <head>
+
       <title>Projet BDD</title>
       <meta charset="utf-8">
-	  <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="style.css">
+
    </head>
+
    <body>
+
 		<header>
+
 			<ul>
-				<li><a class="link" href="editionprofil.php">Editer mon profil</a></li>
+
+				
 				<?php
-				if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) {
+				if(isset($_SESSION['id']) AND $compteinfo['Id_Compte'] == $_SESSION['id']) 
+        {
 				?>
-				<li><a class="link" href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
-				<?php
+
+          <li><a href="editionprofil.php">Editer mon profil</a></li>
+				  <li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
+          <li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
+	        <li><a href="page_anonyme.php">Graphiques</a></li>
+          <li><a href="deconnexion.php">Se déconnecter</a></li>		
+
+        <?php
 				}
 				?>
-				<li><a class="link" href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
-				<li><a class="link" href="page_anonyme.php">Graphiques</a></li>
-				<li><a class="link" href="deconnexion.php">Se déconnecter</a></li>
+				
+				
 			</ul>
-		</header>
-      <div align="center">
-         <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>    <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  </h2>
 
-         <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
-         </br>
+		</header>
+
+      <div align="center">
+
+          <h2>Profil de <?php echo $personneinfo['nom']." ".$personneinfo['prenom']." | "."Mail : ".$compteinfo['email']?>; 
+            <br/> Identifiant : <?php echo $compteinfo['Id_Compte'];?>    <?php if ($compteinfo['etat'] == 1) { echo "Administrateur"; } ?>  
+          </h2>
+
+          <a class="link" href="page_creation_maison.php">Ajouter une maison</a>
+          </br>
          	<a class="link" href="page_creation_appart">Ajouter un appartement</a>
-         	 </br>
-         	</font>
+         	</br>
+         	
+          </font>
 
          <br /><br />
          <TABLE> <!--border=6 cellspacing=12 cellpadding=20>--><!--<tr>-->
