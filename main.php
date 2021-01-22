@@ -58,9 +58,10 @@ session_start();
 				
 			</ul>
 		</header>
+<div class="Connexion" align="center">
 	<h1>Page D'Accueil </h1>
 	<font color="#000000">
-	<div class="Connexion">
+	
 		<h2>Connexion</h2>
 		<form method="POST" action="">
 			<label for="formulaire_connexion">

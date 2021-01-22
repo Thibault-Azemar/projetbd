@@ -61,6 +61,17 @@ th,td,tr /* Toutes les cellules des tableaux... */
 
 }
 
+.submitdel
+{
+	background-color: #b82b21;
+	border: none ;
+	color: #ececec ;
+	/*height: 22px;
+	width: 75px;*/
+	border-radius: 2px;
+
+}
+
 .link
 {
 	color: #201b22; /* 201b22   4b5e65  */

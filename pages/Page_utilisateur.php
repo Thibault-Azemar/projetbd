@@ -137,7 +137,7 @@
                       <br/>
                       <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idpiece=".$pieceinfo['Id_Piece'];?>" method="post">
 
-                        <input type="submit" class="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
+                        <input type="submit" class="submitdel" id="SupprimerA" name="SupprimerA" value="Supprimer">
 
                       </form>   
                   
@@ -207,7 +207,7 @@
                             </form> 
 
                             <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                              <input type="submit" class="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                              <input type="submit" class="submitdel" id="Supprimer" name="Supprimer" value="Supprimer">
                             </form>
 
                           </div>
