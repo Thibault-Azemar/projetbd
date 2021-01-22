@@ -82,7 +82,7 @@ if(isset($_SESSION['id'])) {
                <input type="submit" value="Mettre à jour mon profil !" />
             </form>
             
-            <a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a>
+            
             <?php if(isset($msg)) { echo $msg; } ?>
          </div>
       </div>
