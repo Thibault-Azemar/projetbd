@@ -20,7 +20,7 @@ session_start();
 		$count4=0; 
 		$reqage=$BDD->query('SELECT * FROM personne'); 
 		while($infoage=$reqage->fetch()){
-			$dateNaissance = "15-06-1995";
+			$dateNaissance = $infoage['date_naissance'];
   			$aujourdhui = date("Y-m-d");
   			$diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
   			if($diff->format('%y')<'25'){
