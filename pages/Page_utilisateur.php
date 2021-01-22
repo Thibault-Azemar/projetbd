@@ -46,7 +46,7 @@ session_start();
          	</font>
 
          <br /><br />
-         <TABLE border=6 cellspacing=12 cellpadding=20><!--<tr>-->
+         <TABLE> <!--border=6 cellspacing=12 cellpadding=20>--><!--<tr>-->
          	<?php 
           $reqmaison=$BDD->prepare("SELECT * FROM maison WHERE Id_Personne=?"); 
           $reqmaison->execute(array($getid)); 
@@ -156,22 +156,29 @@ session_start();
    				           {
    					            $reqconso=$BDD->prepare("SELECT * FROM consomme WHERE Id_appareil= ?"); 
    							        $reqconso->execute(array($appareilinfo['Id_Appareil'])); 
+
    					            $reqemission=$BDD->prepare("SELECT * FROM emet WHERE Id_Appareil=? "); 
    					            $reqemission->execute(array($appareilinfo['Id_Appareil'])); 
-   					            ?><td><?php echo $appareilinfo['libelle'];
+
+   					            ?>
+                        <td>
+                        <?php echo $appareilinfo['libelle'];
    					            $reqvideo=$BDD->prepare("SELECT * FROM video WHERE Id_Appareil=? "); 
    					            $reqvideo->execute(array($appareilinfo['Id_Appareil'])); 
    					            $infovideo=$reqvideo->fetch(); 
    					 
                         ?>
-                       <div>
+
+                        <div>
             		
-                        <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                         <input type="submit" class="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
-                         </form>   
-                         <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                         <input type="submit" class="submit" id="Arreter" name="Arreter" value="Arreter">
-                        </form>   
+                          <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
+                            <input type="submit" class="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
+                          </form>  
+
+                          <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
+                            <input type="submit" class="submit" id="Arreter" name="Arreter" value="Arreter">
+                          </form> 
+
                         </div>
 
                         <?php 
@@ -207,9 +214,8 @@ session_start();
                         ?>
 
                         <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                        <input type="submit" class="submit" id="Supprimer" name="Supprimer" value="Supprimer">
-
-                         </form>   
+                          <input type="submit" class="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                        </form>   
 
                         <?php 
 
@@ -227,6 +233,9 @@ session_start();
 
                           $reqsupp4=$BDD->prepare("DELETE FROM appartient_piece WHERE Id_Appareil = ?");
                           $reqsupp4->execute(array($appareilinfo['Id_Appareil']));
+
+                          $reqsupp5=$BDD->prepare("DELETE FROM duree_de_conso WHERE Id_Appareil = ?");
+                          $reqsupp5->execute(array($appareilinfo['Id_Appareil']));
 
                           $reqsupp = $BDD->prepare("DELETE FROM appareil WHERE Id_Appareil = ?");
                           $reqsupp->execute(array($appareilinfo['Id_Appareil']));
