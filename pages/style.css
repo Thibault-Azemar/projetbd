@@ -52,7 +52,9 @@ th,td,tr /* Toutes les cellules des tableaux... */
 
 .submit
 {
-	background-color: #44566c
+	background-color: #44566c;
+	border: none ;
+	color: #ececec ;
 }
 
 

@@ -112,7 +112,7 @@ session_start();
                      <br/>
                       <br/>
                     <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idpiece=".$pieceinfo['Id_Piece'];?>" method="post">
-                     <input type="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
+                     <input type="submit" class="submit" id="SupprimerA" name="SupprimerA" value="Supprimer">
                       </form>   
                   
 
@@ -165,10 +165,10 @@ session_start();
                        <div>
             		
                         <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                         <input type="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
+                         <input type="submit" class="submit" id="Demarrer<?php echo $appareilinfo['Id_Appareil'];?>" name="Demarrer" value="Demarrer">
                          </form>   
                          <form action="<?php echo $_SERVER['PHP_SELF']."?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                         <input type="submit" id="Arreter" name="Arreter" value="Arreter">
+                         <input type="submit" class="submit" id="Arreter" name="Arreter" value="Arreter">
                         </form>   
                         </div>
 
@@ -205,7 +205,7 @@ session_start();
                         ?>
 
                         <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
-                        <input type="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                        <input type="submit" class="submit" id="Supprimer" name="Supprimer" value="Supprimer">
                          </form>   
 
                         <?php 
