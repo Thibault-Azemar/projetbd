@@ -18,7 +18,7 @@ session_start();
 		$desc = htmlspecialchars($_POST['desc']);
 		$type_appareil = htmlspecialchars($_POST['type_appareil']);
 
-
+		
 
 
 		$reqidtype=$BDD->prepare("SELECT Id_Type_appareil FROM type_appareil WHERE nom_appareil = ?");
@@ -26,6 +26,7 @@ session_start();
 		
 
 
+		
 
 
 
