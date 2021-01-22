@@ -25,6 +25,3 @@ page utilisateur montrer conso appart (tableau de bord avec l'evolution journali
 les requetes sql de la page admin + montrer les résultats
 
 regler problème suppression appareil
-
-
-pouvoir mettre 0 en substance emise et ne pas etre obligé e remplir substance et video
