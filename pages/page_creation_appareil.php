@@ -64,17 +64,17 @@ session_start();
 					if($substanceexist == 1)
 					{
 						$reqtypeappareil=$BDD->prepare("SELECT * FROM type_appareil WHERE Id_Type_appareil = ?"); 
-						$reqtypeappareil->execute(array($type));
+						$reqtypeappareil->execute(array($type['Id_Type_appareil']));
 						$typeappareilexist=$reqtypeappareil->rowCount();
 						
 						if($typeappareilexist == 0 )
 						{
 							$inserttypeappareil = $BDD->prepare("INSERT INTO type_appareil(Id_Type_appareil) VALUES(?)");
-							$inserttypeappareil->execute(array($type));
+							$inserttypeappareil->execute(array($type['Id_Type_appareil']));
 						}
 						
 						$insertappareil = $BDD->prepare("INSERT INTO appareil(description, libelle, Id_Type_appareil , conso_par_h, emission_par_h) VALUES(?, ?, ?, ?, ?)");
-						$insertappareil->execute(array($desc, $libelle, $type, $conso, $emission));
+						$insertappareil->execute(array($desc, $libelle, $type['Id_Type_appareil'], $conso, $emission));
 						
 						$reqidappareil = $BDD->prepare("SELECT Id_Appareil FROM appareil WHERE description = ?");
 						$reqidappareil->execute(array($desc));
