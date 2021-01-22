@@ -243,7 +243,7 @@ session_start();
 								$reqsubstance = "SELECT * FROM substances";
 								$listesub=$BDD->query($reqsubstance);
 							?>
-							<select name="substances">
+							<select name="substance">
 								<?php 
 							
 									while($lignes=$listesub->fetch())
