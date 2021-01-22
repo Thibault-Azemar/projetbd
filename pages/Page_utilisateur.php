@@ -193,7 +193,8 @@
    					              $infovideo=$reqvideo->fetch(); 
    					 
                       ?>
-
+                          <br/>
+                          <br/>
                           <div>
             		
                             <form action="<?php echo "Page_utilisateur.php?id=".$_SESSION['id']."&"."idappareil=".$appareilinfo['Id_Appareil'];?>" method="post">
