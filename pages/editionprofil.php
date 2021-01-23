@@ -64,7 +64,7 @@ if(isset($_SESSION['id'])) {
 		</header>
       <div align="center">
          <h2>Edition de mon profil</h2>
-         <div align="left">
+         
             <form method="POST" action="" enctype="multipart/form-data">
                <label>Nom :</label>
                <input type="text" name="NNom" placeholder="Nouveau nom" value="<?php echo $personneinfo['nom']?>" />
@@ -84,7 +84,6 @@ if(isset($_SESSION['id'])) {
             
             
             <?php if(isset($msg)) { echo $msg; } ?>
-         </div>
       </div>
    </body>
 </html>
