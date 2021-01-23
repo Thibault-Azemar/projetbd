@@ -199,7 +199,7 @@ var nbpersonne = new Chart(ctx, {
           
 
           $reqsuppvuepiece=$BDD->query('DROP VIEW vue_piece'); 
-          $reqsuppvueappart=$BDD->query('DROP WVIEW vue_appartement'); 
+          $reqsuppvueappart=$BDD->query('DROP VIEW vue_appartement'); 
           $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
     }
      
@@ -241,7 +241,7 @@ var nbpersonne = new Chart(ctx, {
           
 
           $reqsuppvuepiece=$BDD->query('DROP VIEW vue_piece'); 
-          $reqsuppvueappart=$BDD->query('DROP WVIEW vue_appartement'); 
+          $reqsuppvueappart=$BDD->query('DROP VIEW vue_appartement'); 
           $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
     }
      
