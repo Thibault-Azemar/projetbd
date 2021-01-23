@@ -142,9 +142,9 @@ session_start();
 				if(isset($_SESSION['id'])) {
 				?>
 				<li><a href="Page_Administrateur.php?id=<?php echo $_SESSION['id'];?>">Page Administrateur</a></li>
-				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page utilisateur</a></li>
+				<li><a href="Page_utilisateur.php?id=<?php echo $_SESSION['id'];?>" >Page locataire</a></li>
 				<li><a href="page_proprietaire.php?id=<?php echo $_SESSION['id'];?>">Page Propriétaire</a></li>
-				<li><a href="page_anonyme.php">Graphiques</a></li>
+				<li><a href="tableau_de_bord.php?id=<?php echo $_SESSION['id'];?>">Tableau de Bord</a></li>
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 				<?php
 				}

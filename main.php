@@ -53,7 +53,6 @@ session_start();
 <body>
 	<header>
 			<ul>
-				<li><a href="pages/page_anonyme.php">Graphiques</a></li>
 				<li><a href="pages/creationcompte.php">Vous ne possèdez aucun compte ?</a></li>
 				
 			</ul>
