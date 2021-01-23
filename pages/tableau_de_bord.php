@@ -4,26 +4,25 @@
 	$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
 	
 	$reqidappart=$BDD->prepare('SELECT Id_Appartement FROM appartement WHERE Id_Personne = ?');
-	$reqidappart=execute(array($_SESSION['id']));
+	$reqidappart->execute(array($_GET['id']));
 	while($infoidappart=$reqidappart->fetch())
 	{
 		$reqidpiece=$BDD->prepare('SELECT Id_Piece FROM piece WHERE Id_Appartement = ?');
-		$reqidpiece=execute(array($infoidappart));
+		$reqidpiece->execute(array($infoidappart['Id_Appartement']));
 		while($infoidpiece=$reqidpiece->fetch())
 		{
 			$reqidappareil=$BDD->prepare('SELECT Id_Appareil FROM appartient_piece WHERE Id_Piece = ?');
-			$reqidappareil=execute(array($infoidpiece));
+			$reqidappareil->execute(array($infoidpiece['Id_Piece']));
 			while($infoidappareil=$reqidappareil->fetch())
 			{
 				$reqconsomme=$BDD->prepare('SELECT Consommation_par_h FROM consomme WHERE Id_Appareil = ?');
-				$reqconsomme=execute(array($infoidappareil));
+				$reqconsomme->execute(array($infoidappareil['Id_Appareil']));
 				
 				$infoconsomme=$reqconsomme->fetch();
 				
 				$reqdureeconsofin=$BDD->prepare('SELECT date_fin FROM duree_de_conso WHERE Id_Appareil = ?');
-				$reqdureeconsofin=execute(array($infoidappareil));
+				$reqdureeconsofin->execute(array($infoidappareil['Id_Appareil']));
 				$infodureeconsofin=$reqdureeconsofin->fetch();
-				$infodureeconsofin=format("Y:m:d");
 				$aujourdhui = date("Y-m-d");
 				if ($infodureeconsofin != $aujourdhui)
 				{
