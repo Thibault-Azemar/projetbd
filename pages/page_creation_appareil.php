@@ -34,7 +34,7 @@ session_start();
 
 
 		$conso = htmlspecialchars($_POST['conso']);
-		if(!empty($_POST['emmission']))
+		if(!empty($_POST['emission']))
 		{
 			$emission = htmlspecialchars($_POST['emission']);
 		}
