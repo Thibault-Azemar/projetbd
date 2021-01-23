@@ -74,7 +74,7 @@ session_start();
 			</ul>
 		</header>
 <div align="center">
-  <h1> Histogramme des genres des personnes incrites sur le site : </h1>
+  <h1> Histogramme des genres des personnes inscrites sur le site : </h1>
 	<div id="container" style="width: 50%">
 	<canvas id="nbgenre"> </canvas>
 </div>
@@ -190,7 +190,7 @@ var nbpersonne = new Chart(ctx, {
           $infoconsomme=$reqconsomme->fetch(); 
           $duree=date_diff(date_create($infoselect_appareil['date_fin']),date_create($infoselect_appareil['date_debut'])); 
           $duree=$duree->format('%s'); 
-          $conso_tot_maison=$conso_tot_maison+$duree*$infoconsomme['Consommation_par_h'];  
+          $conso_tot_maison=$conso_tot_maison+$duree*$ifnfoconsomme['Consommation_par_h'];  
           if($conso_tot_maison > $conso_totale_elevee){
             $conso_totale_elevee=$conso_tot_maison;
             $maison_gourmande=$infomaison['Id_Maison']; 
