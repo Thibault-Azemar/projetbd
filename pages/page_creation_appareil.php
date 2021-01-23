@@ -327,5 +327,8 @@ session_start();
 				echo $erreur;
 			}
 		?>
+		<footer>
+		<p>&copy; 2020 - Les Imposteurs</p>
+	</footer>
 	</body>
 </html>

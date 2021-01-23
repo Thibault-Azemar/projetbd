@@ -85,6 +85,9 @@ if(isset($_SESSION['id'])) {
             
             <?php if(isset($msg)) { echo $msg; } ?>
       </div>
+      <footer>
+      <p>&copy; 2020 - Les Imposteurs</p>
+   </footer>
    </body>
 </html>
 <?php   
