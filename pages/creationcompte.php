@@ -167,7 +167,7 @@
 								<label for="formulaire">Confirmer le mot de passe :</label>
 							</td>
 							<td>
-								<input type="password" placeholder="Réécriver votre mdp" id="mdp2"name="mdp2" />
+								<input type="password" placeholder="Réécrivez votre mdp" id="mdp2"name="mdp2" />
 							</td>
 						</tr>
 
