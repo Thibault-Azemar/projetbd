@@ -73,7 +73,7 @@ session_start();
 				
 			</ul>
 		</header>
-	Ceci est une page anonyme 
+<div align="center">
 	<div id="container" style="width: 50%">
 	<canvas id="nbgenre"> </canvas>
 </div>
@@ -208,6 +208,6 @@ var nbpersonne = new Chart(ctx, {
   
   }
 ?>
-
+</div>
 </body>
 </html>
