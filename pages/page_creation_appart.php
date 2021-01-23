@@ -165,5 +165,8 @@
 				echo '<font color="red">'.$erreur."</font>"; 
 			}
 		?>
+		<footer>
+		<p>&copy; 2020 - Les Imposteurs</p>
+	</footer>
 	</body>
 </html>

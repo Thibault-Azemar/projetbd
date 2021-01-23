@@ -93,6 +93,7 @@
 				<li><a href="deconnexion.php">Se déconnecter</a></li>
 			</ul>
 		</header>
+		
     	Bonjour Cher(e) Administrateur. <br/>
 
     	<table>
