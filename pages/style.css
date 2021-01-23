@@ -103,10 +103,15 @@ li a
 	text-decoration: none;
 }
 
+body
+{
+}
+
 footer 
 {
 	background: #44566c;
 	text-align: center;
 	font-size: 18px;
 	color:  #ececec;
+	bottom: 0;
 }
