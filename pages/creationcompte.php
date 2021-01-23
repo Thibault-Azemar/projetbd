@@ -92,7 +92,7 @@
 <body>
 	<header>
 		<ul>
-			<li><a href="../main.php">Acceuil</a></li>			
+			<li><a href="../main.php">Accueil</a></li>			
 		</ul>
 	</header>
 	<div class="Inscription" align="center">
