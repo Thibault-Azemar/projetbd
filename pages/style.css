@@ -114,4 +114,9 @@ footer
 	font-size: 18px;
 	color:  #ececec;
 	bottom: 0;
+	left:0;
+	right:0;
+	position: relative;
+
+	
 }
