@@ -121,7 +121,7 @@ var nbgenre = new Chart(ctx, {
 
 </canvas>
 
-=======
+
 <div id="container" style="width: 50%;">
 
 <canvas id="nbpersonne"> </canvas>
