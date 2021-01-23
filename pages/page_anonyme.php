@@ -74,6 +74,7 @@ session_start();
 			</ul>
 		</header>
 <div align="center">
+  <h1> Histogramme des genres des personnes incrites sur le site : </h1>
 	<div id="container" style="width: 50%">
 	<canvas id="nbgenre"> </canvas>
 </div>
@@ -120,8 +121,8 @@ var nbgenre = new Chart(ctx, {
 </script>
 
 </canvas>
+<h1>Histogramme du nombre d’abonnés pour chaque tranche d'age</h1>
 
-=======
 <div id="container" style="width: 50%;">
 
 <canvas id="nbpersonne"> </canvas>
@@ -166,7 +167,7 @@ var nbpersonne = new Chart(ctx, {
 });
 </script>
 
-
+<h1>La maison la plus gourmande pour chaque ressource pour un mois donné</h1>
 <?php 
   $reqressource=$BDD->query('SELECT * FROM ressources'); 
     while($inforessources=$reqressource->fetch()){
@@ -202,12 +203,54 @@ var nbpersonne = new Chart(ctx, {
           $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
     }
      
-            echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d\'identifiant'.$maison_gourmande.'.';
-            echo ' Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'].'.'.'</br>';   
+           
           }
+           echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d\'identifiant'." ".$maison_gourmande.'. </br>';
+            echo ' Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'].'.'.'</br>';   
   
   }
 ?>
+<h1>La maison la plus gourmande pour chaque Substances pour un mois donné</h1>
+<?php 
+  $reqsubstance=$BDD->query('SELECT * FROM substances'); 
+    while($infosubstances=$reqsubstance->fetch()){
+      $emis_totale_elevee=0; 
+    $reqmaison=$BDD->query('SELECT * FROM maison'); 
+    while($infomaison=$reqmaison->fetch()){
+
+      $reqvue_appart=$BDD->prepare('CREATE VIEW vue_appartement AS SELECT Id_Appartement FROM appartement WHERE Id_Maison=?'); 
+      $reqvue_appart->execute(array($infomaison['Id_Maison'])); 
+      $reqvue_piece=$BDD->query('CREATE VIEW  vue_piece AS SELECT Id_Piece FROM piece WHERE Id_Appartement IN (SELECT * FROM vue_appartement)'); 
+      $reqvue_piece=$BDD->query('CREATE VIEW vue_appareil AS SELECT Id_Appareil FROM appartient_piece WHERE Id_Piece IN (SELECT * FROM vue_piece)');
+
+      $reqselec_appareil=$BDD->prepare('SELECT DISTINCT * FROM duree_de_conso d LEFT JOIN consomme c ON (d.Id_Appareil=c.Id_Appareil) WHERE d.date_fin LIKE "2021-01%" AND c.Id_Ressources=?  AND d.Id_Appareil IN (SELECT * FROM vue_appareil)'); 
+      $reqselec_appareil->execute(array($infosubstances['Id_Substances'])); 
+      $emis_tot_maison=0; 
+      while ($infoselect_appareil=$reqselec_appareil->fetch()){
+          $reqemet=$BDD->prepare('SELECT * FROM emet WHERE Id_Appareil=?'); 
+          $reqemet->execute(array($infoselect_appareil['Id_Appareil'])); 
+          $infoemet=$reqemet->fetch(); 
+          $duree=date_diff(date_create($infoselect_appareil['date_fin']),date_create($infoselect_appareil['date_debut'])); 
+          $duree=$duree->format('%s'); 
+          $emis_tot_maison=$emis_tot_maison+$duree*$infoemet['Emmission_par_h'];  
+          if($emis_tot_maison > $emis_totale_elevee){
+            $emis_totale_elevee=$emis_tot_maison;
+            $maison_emetrice=$infomaison['Id_Maison']; 
+          
+      }
+          
+
+          $reqsuppvuepiece=$BDD->query('DROP VIEW vue_piece'); 
+          $reqsuppvueappart=$BDD->query('DROP WVIEW vue_appartement'); 
+          $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
+    }
+     
+            echo 'La maison la plus gourmande pour la substance '.$infosubstances['libele'].' est la maison d\'identifiant'." ".$maison_emetrice.'. </br>';
+            echo ' Elle a émis au total '.$emis_totale_elevee.' '.$infosubstances['description'].'.'.'</br>';   
+          }
+  
+  }
+  ?>
 </div>
 <footer>
     <p>&copy; 2020 - Les Imposteurs</p>

@@ -52,7 +52,7 @@ if(isset($_SESSION['id']))
       </header>
       <div align="center">
          <h2>Edition de mon appartement</h2>
-         <div align="left">
+         <div align="center">
             <form method="POST" action="" enctype="multipart/form-data">
                <table>
                   <tr>
