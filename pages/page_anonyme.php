@@ -189,8 +189,7 @@ var nbpersonne = new Chart(ctx, {
           $infoconsomme=$reqconsomme->fetch(); 
           $duree=date_diff(date_create($infoselect_appareil['date_fin']),date_create($infoselect_appareil['date_debut'])); 
           $duree=$duree->format('%s'); 
-          $conso_tot_maison=$conso_tot_maison+$duree*$infoconsomme['Consommation_par_h']; 
-          echo $conso_tot_maison.'</br>'; 
+          $conso_tot_maison=$conso_tot_maison+$duree*$infoconsomme['Consommation_par_h'];  
           if($conso_tot_maison > $conso_totale_elevee){
             $conso_totale_elevee=$conso_tot_maison;
             $maison_gourmande=$infomaison['Id_Maison']; 
@@ -203,8 +202,8 @@ var nbpersonne = new Chart(ctx, {
           $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
     }
      
-            echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d identifiant'.$maison_gourmande.'</br>';
-            echo 'Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'];   
+            echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d\'identifiant'.$maison_gourmande.'.';
+            echo ' Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'].'.'.'</br>';   
           }
   
   }
