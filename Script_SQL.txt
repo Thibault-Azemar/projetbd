@@ -7,6 +7,8 @@ CREATE TABLE Personne(
    prenom VARCHAR(40),
    PRIMARY KEY(Id_Personne)
 );
+ALTER TABLE Personne ENGINE=InnoDB;
+
 
 CREATE TABLE Compte(
    Id_Compte INT AUTO_INCREMENT,
@@ -19,18 +21,22 @@ CREATE TABLE Compte(
    UNIQUE(Id_Personne),
    FOREIGN KEY(Id_Personne) REFERENCES Personne(Id_Personne)
 );
+ALTER TABLE Compte ENGINE=InnoDB;
 
 CREATE TABLE Region(
    Id_Region INT AUTO_INCREMENT,
    Nom VARCHAR(50),
    PRIMARY KEY(Id_Region)
 );
+ALTER TABLE Region ENGINE=InnoDB;
 
 CREATE TABLE Type_appart(
    Id_type_appart INT AUTO_INCREMENT,
    pieces_contenues VARCHAR(50),
    PRIMARY KEY(Id_type_appart)
 );
+
+ALTER TABLE Type_appart ENGINE=InnoDB;
 
 CREATE TABLE Ressources(
    Id_Ressources INT AUTO_INCREMENT,
@@ -43,6 +49,8 @@ CREATE TABLE Ressources(
    PRIMARY KEY(Id_Ressources)
 );
 
+ALTER TABLE Ressources ENGINE=InnoDB;
+
 CREATE TABLE Substances(
    Id_Substances INT AUTO_INCREMENT,
    valeur_min_par_j INT,
@@ -54,11 +62,15 @@ CREATE TABLE Substances(
    PRIMARY KEY(Id_Substances)
 );
 
+ALTER TABLE Substances ENGINE=InnoDB;
+
 CREATE TABLE Type_appareil(
    Id_Type_appareil INT AUTO_INCREMENT,
    nom_appareil VARCHAR(50),
    PRIMARY KEY(Id_Type_appareil)
 );
+
+ALTER TABLE Type_appareil ENGINE=InnoDB;
 
 CREATE TABLE Historique_Appareil(
    date_debut DATETIME,
@@ -66,11 +78,16 @@ CREATE TABLE Historique_Appareil(
    PRIMARY KEY(date_debut, date_fin)
 );
 
+ALTER TABLE Historique_Appareil ENGINE=InnoDB;
+
 CREATE TABLE Historique_Location(
    date_debut DATE,
    date_fin DATE,
    PRIMARY KEY(date_debut, date_fin)
 );
+
+
+ALTER TABLE Historique_Location ENGINE=InnoDB;
 
 CREATE TABLE Historique_Posseder(
    date_debut DATE,
@@ -78,11 +95,16 @@ CREATE TABLE Historique_Posseder(
    PRIMARY KEY(date_debut, date_fin)
 );
 
+ALTER TABLE Historique_Posseder ENGINE=InnoDB;
+
 CREATE TABLE Type_piece(
    Id_Type_piece INT AUTO_INCREMENT,
    nom_type VARCHAR(50),
    PRIMARY KEY(Id_Type_piece)
 );
+
+
+ALTER TABLE Type_Piece ENGINE=InnoDB;
 
 CREATE TABLE Departement(
    Id_Departement INT AUTO_INCREMENT,
@@ -91,6 +113,9 @@ CREATE TABLE Departement(
    PRIMARY KEY(Id_Departement),
    FOREIGN KEY(Id_Region) REFERENCES Region(Id_Region)
 );
+
+
+ALTER TABLE Departement ENGINE=InnoDB;
 
 CREATE TABLE Appareil(
    Id_Appareil INT AUTO_INCREMENT,
@@ -103,6 +128,9 @@ CREATE TABLE Appareil(
    FOREIGN KEY(Id_Type_appareil) REFERENCES Type_appareil(Id_Type_appareil)
 );
 
+ALTER TABLE Appareil ENGINE=InnoDB;
+
+
 CREATE TABLE Video(
    Id_Video INT AUTO_INCREMENT,
    Lien VARCHAR(50),
@@ -110,6 +138,8 @@ CREATE TABLE Video(
    PRIMARY KEY(Id_Video),
    FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil)
 );
+
+ALTER TABLE Video ENGINE=InnoDB;
 
 CREATE TABLE Ville(
    Id_Ville INT AUTO_INCREMENT,
@@ -119,6 +149,8 @@ CREATE TABLE Ville(
    PRIMARY KEY(Id_Ville),
    FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement)
 );
+
+ALTER TABLE Ville ENGINE=InnoDB;
 
 CREATE TABLE Maison(
    Id_Maison INT AUTO_INCREMENT,
@@ -137,6 +169,8 @@ CREATE TABLE Maison(
    FOREIGN KEY(Id_Ville) REFERENCES Ville(Id_Ville)
 );
 
+ALTER TABLE Maison ENGINE=InnoDB;
+
 CREATE TABLE Appartement(
    Id_Appartement INT AUTO_INCREMENT,
    degre_de_secu INT,
@@ -153,6 +187,8 @@ CREATE TABLE Appartement(
    FOREIGN KEY(date_debut, date_fin) REFERENCES Historique_Location(date_debut, date_fin)
 );
 
+ALTER TABLE Appartement ENGINE=InnoDB;
+
 CREATE TABLE Piece(
    Id_Piece INT AUTO_INCREMENT,
    libelle VARCHAR(50),
@@ -163,6 +199,8 @@ CREATE TABLE Piece(
    FOREIGN KEY(Id_Appartement) REFERENCES Appartement(Id_Appartement)
 );
 
+ALTER TABLE Piece ENGINE=InnoDB;
+
 CREATE TABLE Appartient_piece(
    Id_Piece INT,
    Id_Appareil INT,
@@ -170,6 +208,8 @@ CREATE TABLE Appartient_piece(
    FOREIGN KEY(Id_Piece) REFERENCES Piece(Id_Piece),
    FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil)
 );
+
+ALTER TABLE Appartient_piece ENGINE=InnoDB;
 
 CREATE TABLE Consomme(
    Id_Appareil INT,
@@ -180,6 +220,8 @@ CREATE TABLE Consomme(
    FOREIGN KEY(Id_Ressources) REFERENCES Ressources(Id_Ressources)
 );
 
+ALTER TABLE Consomme ENGINE=InnoDB;
+
 CREATE TABLE Emet(
    Id_Appareil INT,
    Id_Substances INT,
@@ -188,6 +230,8 @@ CREATE TABLE Emet(
    FOREIGN KEY(Id_Appareil) REFERENCES Appareil(Id_Appareil),
    FOREIGN KEY(Id_Substances) REFERENCES Substances(Id_Substances)
 );
+
+ALTER TABLE Emet ENGINE=InnoDB;
 
 CREATE TABLE Duree_de_conso(
    Id_Appareil INT,
@@ -198,6 +242,8 @@ CREATE TABLE Duree_de_conso(
    FOREIGN KEY(date_debut, date_fin) REFERENCES Historique_Appareil(date_debut, date_fin)
 );
 
+ALTER TABLE Duree_de_conso ENGINE=InnoDB;
+
 CREATE TABLE nb_piece(
    Id_type_appart INT,
    Id_Type_piece INT,
@@ -206,5 +252,7 @@ CREATE TABLE nb_piece(
    FOREIGN KEY(Id_type_appart) REFERENCES Type_appart(Id_type_appart),
    FOREIGN KEY(Id_Type_piece) REFERENCES Type_piece(Id_Type_piece)
 );
+
+ALTER TABLE nb_piece ENGINE=InnoDB;
 
 CREATE TRIGGER `suppression` AFTER DELETE ON `personne` FOR EACH ROW IF NOT EXISTS ( SELECT compte.Id_Personne FROM compte LEFT JOIN personne ON compte.Id_Personne=personne.Id_Personne WHERE personne.Id_Personne=old.Id_Personne ) THEN DELETE FROM compte WHERE compte.Id_Personne=old.Id_Personne; UPDATE appartement SET date_fin =CURRENT_DATE WHERE appartement.Id_Personne=old.Id_Personne; END IF 
