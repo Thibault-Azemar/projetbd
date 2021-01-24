@@ -252,6 +252,7 @@ var nbpersonne = new Chart(ctx, {
           }
   
   }
+}
   ?>
 </div>
 
