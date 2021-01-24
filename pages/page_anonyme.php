@@ -226,7 +226,7 @@ var nbpersonne = new Chart(ctx, {
       $reqvue_piece=$BDD->query('CREATE VIEW  vue_piece AS SELECT Id_Piece FROM piece WHERE Id_Appartement IN (SELECT * FROM vue_appartement)'); 
       $reqvue_piece=$BDD->query('CREATE VIEW vue_appareil AS SELECT Id_Appareil FROM appartient_piece WHERE Id_Piece IN (SELECT * FROM vue_piece)');
 
-      $reqselec_appareil=$BDD->prepare('SELECT DISTINCT * FROM duree_de_conso d LEFT JOIN consomme c ON (d.Id_Appareil=c.Id_Appareil) WHERE d.date_fin LIKE "2021-01%" AND c.Id_Ressources=?  AND d.Id_Appareil IN (SELECT * FROM vue_appareil)'); 
+      $reqselec_appareil=$BDD->prepare('SELECT DISTINCT * FROM duree_de_conso d LEFT JOIN emet c ON (d.Id_Appareil=c.Id_Appareil) WHERE d.date_fin LIKE "2021-01%" AND c.Id_Ressources=?  AND d.Id_Appareil IN (SELECT * FROM vue_appareil)'); 
       $reqselec_appareil->execute(array($infosubstances['Id_Substances'])); 
       $emis_tot_maison=0; 
       while ($infoselect_appareil=$reqselec_appareil->fetch()){
