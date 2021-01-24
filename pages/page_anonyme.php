@@ -173,6 +173,7 @@ var nbpersonne = new Chart(ctx, {
     while($inforessources=$reqressource->fetch()){
       if($inforessources['libele'] != 'Null'){
       $conso_totale_elevee=0; 
+      $maison_gourmande; 
     $reqmaison=$BDD->query('SELECT * FROM maison'); 
     while($infomaison=$reqmaison->fetch()){
 
@@ -247,7 +248,7 @@ var nbpersonne = new Chart(ctx, {
           $reqsuppvueappareil=$BDD->query('DROP VIEW vue_appareil'); 
     }
      
-            echo 'La maison la plus gourmande pour la substance '.$infosubstances['libele'].' est la maison d\'identifiant'." ".$maison_emetrice.'. </br>';
+            echo 'La maison la plus gourmande pour la substance '.$infosubstances['libele'].' est la maison d\'identifiant'." ".$infomaison['Id_Maison'].'. </br>';
             echo ' Elle a émis au total '.$emis_totale_elevee.' '.$infosubstances['description'].'.'.'</br>';   
           }
   
