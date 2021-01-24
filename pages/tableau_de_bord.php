@@ -3,6 +3,19 @@
 		
 	$BDD =new PDO("mysql:host=127.0.0.1;dbname=bddphp","root",""); 
 	
+	$aujourdhui1 = 0;
+	$aujourdhui2 = 0;
+	$aujourdhui3 = 0;
+	$aujourdhui4 = 0;
+	$aujourdhui5 = 0;
+	$aujourdhui6 = 0;
+	$aujourdhui7 = 0;
+	$aujourdhui8 = 0;
+	$aujourdhui9 = 0;
+	$aujourdhui10 = 0;
+	$aujourdhui11 = 0;
+	$aujourdhui12 = 0;
+	
 	$reqidappart=$BDD->prepare('SELECT Id_Appartement FROM appartement WHERE Id_Personne = ?');
 	$reqidappart->execute(array($_GET['id']));
 	while($infoidappart=$reqidappart->fetch())
@@ -24,10 +37,17 @@
 				$reqdureeconsofin->execute(array($infoidappareil['Id_Appareil']));
 				$infodureeconsofin=$reqdureeconsofin->fetch();
 				$aujourdhui = date("Y-m-d");
-				if ($infodureeconsofin != $aujourdhui)
+				if ($infodureeconsofin == $aujourdhui)
 				{
-					
+					$reqdureeconsodeb=$BDD->prepare('SELECT date_debut FROM duree_de_conso WHERE Id_Appareil = ?');
+					$reqdureeconsodeb->execute(array($infoidappareil['Id_Appareil']));
+					$infodureeconsodeb=$reqdureeconsodeb->fetch();
+					if ($infodureeconsodeb == $aujourdhui)
+					{
+						echo 'oui';
+					}
 				}
+				echo 'non';
 			}
 		}
 	}

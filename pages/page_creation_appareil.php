@@ -101,7 +101,7 @@ session_start();
 						$insertconso->execute(array($idappareil['Id_Appareil'], $idressource['Id_Ressources'], $conso));
 						
 						$insertpiece = $BDD->prepare("INSERT INTO appartient_piece(Id_Piece, Id_Appareil) VALUES(?, ?)");
-						$insertpiece->execute(array($_GET['idpiece'] ,$idappareil['Id_Appareil']));
+						$insertpiece->execute(array($idpiece ,$idappareil['Id_Appareil']));
 						
 						$erreur = "Votre appareil à bien été ajouté";
 						header("Location: Page_utilisateur.php?id=".$_SESSION['id']);
