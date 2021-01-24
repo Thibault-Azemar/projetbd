@@ -376,7 +376,7 @@
 				},
 				{
 					label: 'hier',
-					data: [19, 3, 5, 2, 3, 12],
+					data: [$hier1, $hier2, $hier3, $hier4, $hier5, $hier6, $hier7, $hier8, $hier9, $hier10, $hier11, $hier12],
 					backgroundColor: 
 					[
 						'rgba(75, 192, 192, 0.2)',
