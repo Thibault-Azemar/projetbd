@@ -171,6 +171,7 @@ var nbpersonne = new Chart(ctx, {
 <?php 
   $reqressource=$BDD->query('SELECT * FROM ressources'); 
     while($inforessources=$reqressource->fetch()){
+      if($inforessources['libele'] != 'Null'){
       $conso_totale_elevee=0; 
       $maison_gourmande; 
     $reqmaison=$BDD->query('SELECT * FROM maison'); 
@@ -209,11 +210,13 @@ var nbpersonne = new Chart(ctx, {
             echo ' Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'].'.'.'</br>';   
   
   }
+}
 ?>
 <h1>La maison la plus gourmande pour chaque Substances pour un mois donné</h1>
 <?php 
   $reqsubstance=$BDD->query('SELECT * FROM substances'); 
     while($infosubstances=$reqsubstance->fetch()){
+      if($infosubstances['libele'] != 'Null'){
       $emis_totale_elevee=0; 
     $reqmaison=$BDD->query('SELECT * FROM maison'); 
     while($infomaison=$reqmaison->fetch()){
@@ -250,6 +253,7 @@ var nbpersonne = new Chart(ctx, {
           }
   
   }
+}
   ?>
 </div>
 
