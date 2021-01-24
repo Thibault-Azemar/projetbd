@@ -173,7 +173,6 @@ var nbpersonne = new Chart(ctx, {
     while($inforessources=$reqressource->fetch()){
       if($inforessources['libele'] != 'Null'){
       $conso_totale_elevee=0; 
-      $maison_gourmande; 
     $reqmaison=$BDD->query('SELECT * FROM maison'); 
     while($infomaison=$reqmaison->fetch()){
 
@@ -206,7 +205,7 @@ var nbpersonne = new Chart(ctx, {
      
            
           }
-           echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d\'identifiant'." ".$maison_gourmande.'. </br>';
+           echo 'La maison la plus gourmande pour la ressource '.$inforessources['libele'].' est la maison d\'identifiant'." ".$infomaison['Id_Maison'].'. </br>';
             echo ' Elle a consommé au total '.$conso_totale_elevee.' '.$inforessources['description'].'.'.'</br>';   
   
   }
@@ -253,7 +252,6 @@ var nbpersonne = new Chart(ctx, {
           }
   
   }
-}
   ?>
 </div>
 
